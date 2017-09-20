@@ -90,9 +90,6 @@ export GROOVY_HOME=/usr/local/opt/groovy/libexec
 # Python
 export PYTHON_HOME="$(dirname $(greadlink -f $(which python3)))"
 
-# Homebrew GitHub API Token for increased rate
-export HOMEBREW_GITHUB_API_TOKEN="0787986ca13a26c691f86e372e4c1d295fd327b5"
-
 # Virtualenvwrapper
 # Which python to use
 export VIRTUALENVWRAPPER_PYTHON="$(greadlink -f $(which python2))"
