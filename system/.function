@@ -36,6 +36,7 @@ is-supported() {
 }
 
 # Check if in path
+
 in-path() {
   [ :$PATH: == *:"$1":* ]
 }
