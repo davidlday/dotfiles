@@ -1,0 +1,11 @@
+# Make pip require a virtualenv, with override for true global need.
+if [ is-executable mkvirtualenv ]; then
+  PIP_REQUIRE_VIRTUALENV=true
+  # Global Pip per http://hackercodex.com/guide/python-development-environment-on-mac-osx/
+  gpip(){
+   PIP_REQUIRE_VIRTUALENV="" pip2 "$@"
+  }
+  gpip3(){
+   PIP_REQUIRE_VIRTUALENV="" pip3 "$@"
+  }
+fi
