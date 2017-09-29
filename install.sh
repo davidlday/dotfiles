@@ -16,13 +16,16 @@ DOTFILES_EXTRA_DIR="$HOME/.extra"
 
 if is-executable git -a -d "$DOTFILES_DIR/.git"; then git --work-tree="$DOTFILES_DIR" --git-dir="$DOTFILES_DIR/.git" pull origin master; fi
 
-# Bunch of symlinks
+# Ensure directories exists
+mkdir -p ~/.pip/
 
+# Bunch of symlinks
 ln -sfv "$DOTFILES_DIR/bash/.bash_profile" ~
 ln -sfv "$DOTFILES_DIR/bash/.inputrc" ~
 ln -sfv "$DOTFILES_DIR/ruby/.gemrc" ~
 ln -sfv "$DOTFILES_DIR/git/.gitconfig" ~
 ln -sfv "$DOTFILES_DIR/git/.gitignore_global" ~
+ln -sfv "$DOTFILES_DIR/pip/pip.conf" ~/.pip/pip.conf
 
 # Package managers & packages
 
