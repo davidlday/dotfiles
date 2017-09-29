@@ -10,15 +10,14 @@
 #fi
 
 # Java
-# Explicitly set JAVA_HOME
 if is-macos; then
   export JAVA_HOME=$(/usr/libexec/java_home)
 else
   export JAVA_HOME=$(dirname $(dirname $(readlink -f $(which java))))
 fi
 
-# Groovy
-export GROOVY_HOME=/usr/local/opt/groovy/libexec
+# # Groovy
+# export GROOVY_HOME=/usr/local/opt/groovy/libexec
 
 # Python
 export PYTHON_HOME="$(dirname $(greadlink -f $(which python3)))"
