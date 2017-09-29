@@ -11,7 +11,11 @@
 
 # Java
 # Explicitly set JAVA_HOME
-export JAVA_HOME=$(/usr/libexec/java_home)
+if is-macos; then
+  export JAVA_HOME=$(/usr/libexec/java_home)
+else
+  export JAVA_HOME=$(dirname $(dirname $(readlink -f $(which java))))
+fi
 
 # Groovy
 export GROOVY_HOME=/usr/local/opt/groovy/libexec
@@ -41,14 +45,6 @@ fi
 export VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--no-site-packages'
 # Default project directory
 export PROJECT_HOME=$HOME/Projects
-
-# Global Pip per http://hackercodex.com/guide/python-development-environment-on-mac-osx/
-gpip2(){
-   PIP_REQUIRE_VIRTUALENV="" pip2 "$@"
-}
-gpip3(){
-   PIP_REQUIRE_VIRTUALENV="" pip3 "$@"
-}
 
 
 # RVM
