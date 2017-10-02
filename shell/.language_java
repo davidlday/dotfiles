@@ -1,6 +1,6 @@
 # Java
-if is-macos; then
-  export JAVA_HOME=$(/usr/libexec/java_home)
+if [ is-macos ]; then
+  is-executable "/usr/libexec/java_home" && export JAVA_HOME=$(/usr/libexec/java_home)
 else
   export JAVA_HOME=$(dirname $(dirname $(readlink -f $(which java))))
 fi

@@ -1,0 +1,25 @@
+# Python
+# Nothing to do here yet.
+
+# virtualenvwrapper
+if is-macos; then
+    [[ -r /usr/local/bin/virtualenvwrapper.sh ]] && source /usr/local/bin/virtualenvwrapper.sh
+else
+    [[ -r /etc/bash_completion.d/virtualenvwrapper ]] && source /etc/bash_completion.d/virtualenvwrapper
+fi
+if is-executable mkvirtualenv; then
+  # Which python to use
+  export VIRTUALENVWRAPPER_PYTHON="$(greadlink -f $(which python2))"
+  # set where virutal environments will live
+  export WORKON_HOME=${HOME}/.virtualenvs
+  # ensure all new environments are isolated from the site-packages directory
+  export VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--no-site-packages'
+  # use the same directory for virtualenvs as virtualenvwrapper
+  export PIP_VIRTUALENV_BASE=${WORKON_HOME}
+  # pip should only run if there is a virtualenv currently activated
+  export PIP_REQUIRE_VIRTUALENV=true
+  # Don't use site-wide packages
+  export VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--no-site-packages'
+  # Default project directory
+  export PROJECT_HOME=${HOME}/Projects
+fi
