@@ -37,6 +37,12 @@ dedupe-path() {
   export PATH
 }
 
+# Check if in path
+
+in-path() {
+  [ :$PATH: == *:"$1":* ]
+}
+
 # Update config file
 
 set-config() {
