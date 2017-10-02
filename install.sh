@@ -29,11 +29,11 @@ ln -sfv "$DOTFILES_DIR/pip/pip.conf" ~/.pip/pip.conf
 
 # Package managers & packages
 
-. "$DOTFILES_DIR/install/brew.sh"
-. "$DOTFILES_DIR/install/npm.sh"
-. "$DOTFILES_DIR/install/bash.sh"
-. "$DOTFILES_DIR/install/brew-cask.sh"
-. "$DOTFILES_DIR/install/gem.sh"
+# . "$DOTFILES_DIR/install/brew.sh"
+# . "$DOTFILES_DIR/install/npm.sh"
+# . "$DOTFILES_DIR/install/bash.sh"
+# . "$DOTFILES_DIR/install/brew-cask.sh"
+# . "$DOTFILES_DIR/install/gem.sh"
 
 # Run tests
 
