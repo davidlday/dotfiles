@@ -1,15 +1,17 @@
+#!/usr/bin/env bash
 # Python
-# Nothing to do here yet.
 
 # virtualenvwrapper
 if is-macos; then
     [[ -r /usr/local/bin/virtualenvwrapper.sh ]] && source /usr/local/bin/virtualenvwrapper.sh
+    READLINK=greadlink
 else
     [[ -r /etc/bash_completion.d/virtualenvwrapper ]] && source /etc/bash_completion.d/virtualenvwrapper
+    READLINK=readlink
 fi
 if is-executable mkvirtualenv; then
   # Which python to use
-  export VIRTUALENVWRAPPER_PYTHON="$(greadlink -f $(which python2))"
+  export VIRTUALENVWRAPPER_PYTHON="$(${READLINK} -f $(which python2))"
   # set where virutal environments will live
   export WORKON_HOME=${HOME}/.virtualenvs
   # ensure all new environments are isolated from the site-packages directory
@@ -22,4 +24,18 @@ if is-executable mkvirtualenv; then
   export VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--no-site-packages'
   # Default project directory
   export PROJECT_HOME=${HOME}/Projects
+
+  # Global Pip per http://hackercodex.com/guide/python-development-environment-on-mac-osx/
+
+  gpip2(){
+     PIP_REQUIRE_VIRTUALENV="" pip2 "$@"
+  }
+
+  gpip3(){
+     PIP_REQUIRE_VIRTUALENV="" pip3 "$@"
+  }
+
 fi
+
+
+unset READLINK
