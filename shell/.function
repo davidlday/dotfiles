@@ -6,7 +6,13 @@ get() {
 
 # Feature detection
 
-is-macos() { [[ "$OSTYPE" =~ ^darwin ]] || return 1; }
+can-sudo() {
+  sudo -v
+}
+
+is-macos() {
+  [[ "$OSTYPE" =~ ^darwin ]] || return 1;
+}
 
 is-executable() {
   type "$1" > /dev/null 2>&1 || return 1;
@@ -84,14 +90,4 @@ extract() {
   else
      echo "'$1' is not a valid file to extract"
   fi
-}
-
-# Global Pip per http://hackercodex.com/guide/python-development-environment-on-mac-osx/
-
-gpip2(){
-   PIP_REQUIRE_VIRTUALENV="" pip2 "$@"
-}
-
-gpip3(){
-   PIP_REQUIRE_VIRTUALENV="" pip3 "$@"
 }
