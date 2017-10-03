@@ -33,7 +33,7 @@ in-path() {
 # Add to path
 
 prepend-path() {
-  [ -d $1 ] && PATH="$1:$PATH"
+  [ -d $1 ] && [ ! in-path $1] && PATH="$1:$PATH"
 }
 
 # De-duplicate path and export
