@@ -1,10 +1,8 @@
+#!/usr/bin/env bash
 # Java
-if [ is-macos ]; then
+if is-macos; then
   is-executable "/usr/libexec/java_home" && export JAVA_HOME=$(/usr/libexec/java_home)
 else
   export JAVA_HOME=$(dirname $(dirname $(readlink -f $(which java))))
 fi
-
-if [ -z ${JAVA_HOME+x} ]; then
-  prepend-path "${JAVA_HOME}/bin"
-fi
+echo "JAVA_HOME=${JAVA_HOME}"
