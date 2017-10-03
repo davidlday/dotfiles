@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 # RVM
 if [ -d "${HOME}/.rvm/bin" ]; then
   prepend-path "${HOME}/.rvm/bin"
