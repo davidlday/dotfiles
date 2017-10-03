@@ -25,4 +25,3 @@ if [ ! -d ~/.vim/bundle/editorconfig-vim ]; then
 fi
 echo "EditorConfig-Vim installed"
 
-
