@@ -13,9 +13,6 @@ prepend-path "/sbin"
 prepend-path "/usr/sbin"
 prepend-path "/usr/local/sbin"
 
-# Remove duplicates (preserving prepended items)
-# Source: http://unix.stackexchange.com/a/40755
-
 dedupe-path
 
 # Wrap up
