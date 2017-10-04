@@ -23,6 +23,7 @@ mkdir -p ~/.pip/
 ln -sfv "$DOTFILES_DIR/bash/.bash_profile" ~
 ln -sfv "$DOTFILES_DIR/bash/.inputrc" ~
 ln -sfv "$DOTFILES_DIR/ruby/.gemrc" ~
+ln -sfv "$DOTFILES_DIR/vim/.vimrc" ~
 ln -sfv "$DOTFILES_DIR/git/.gitconfig" ~
 ln -sfv "$DOTFILES_DIR/git/.gitignore_global" ~
 ln -sfv "$DOTFILES_DIR/pip/pip.conf" ~/.pip/pip.conf
