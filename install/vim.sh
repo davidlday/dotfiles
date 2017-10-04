@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 # Set up additional vim stuff:
+source ../shell/.function
 
 # Make sure vim is installed
 if [ ! is-executable vim ]; then

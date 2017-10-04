@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+source ../shell/.function
 
 if is-macos && is-executable brew; then
   brew install gpg2
