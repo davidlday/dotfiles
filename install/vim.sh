@@ -1,8 +1,17 @@
 #!/usr/bin/env bash
 # Set up additional vim stuff:
 
+# Make sure vim is installed
+if [ ! is-executable vim ]; then
+  if is-mac && is-executable brew; then
+    brew install vim
+  else
+    sudo apt install vim
+  fi
+fi
+
 # Desert Theme: https://vim.sourceforge.io/scripts/script.php?script_id=105
-if [ ! -f ~/.vim/colors/desert.vim ]; then 
+if [ ! -f ~/.vim/colors/desert.vim ]; then
   echo "Installing Desert Theme"
   mkdir -p ~/.vim/colors
   curl -LSso ~/.vim/colors/desert.vim https://raw.githubusercontent.com/fugalh/desert.vim/master/colors/desert.vim
@@ -18,10 +27,9 @@ fi
 echo "Pathogen installed"
 
 # EditorConfig: https://github.com/editorconfig/editorconfig-vim#readme
-if [ ! -d ~/.vim/bundle/editorconfig-vim ]; then 
+if [ ! -d ~/.vim/bundle/editorconfig-vim ]; then
   echo "Installing EditorConfig-Vim"
   cd ~/.vim/bundle
   git clone https://github.com/editorconfig/editorconfig-vim.git
 fi
 echo "EditorConfig-Vim installed"
-
