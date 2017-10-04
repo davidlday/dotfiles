@@ -42,7 +42,8 @@ prepend-path() {
   [ -d $1 ] && PATH="$1:$PATH"
 }
 
-# De-duplicate path and export
+# Remove duplicates (preserving prepended items)
+# Source: http://unix.stackexchange.com/a/40755
 
 dedupe-path() {
   PATH=`echo -n $PATH | awk -v RS=: '{ if (!arr[$0]++) {printf("%s%s",!ln++?"":":",$0)}}'`
