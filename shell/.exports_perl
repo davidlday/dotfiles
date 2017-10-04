@@ -1,6 +1,12 @@
 #!/usr/bin/env bash
 
-# Works on MacOS and Linux
+# plenv
+if [ -d ~/.plenv ]; then
+  prepend-path ~/.plenv/bin
+  eval "$(plenv init -)"
+fi
+
+# Perlbrew.pl
 if [ -f ~/perl5/perlbrew/etc/bashrc ]; then
   source ~/perl5/perlbrew/etc/bashrc
 fi
