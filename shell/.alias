@@ -28,6 +28,8 @@ alias ....="cd ../../.."
 alias -- -="cd -"                  # Go to previous dir with -
 alias cd.='cd $(readlink -f .)'    # Go to real dir (i.e. if current dir is linked)
 
+alias df='df -h'
+
 # Exclude macOS specific files in ZIP archives
 if is-macos; then
   alias zip="zip -x *.DS_Store -x *__MACOSX* -x *.AppleDouble*"
