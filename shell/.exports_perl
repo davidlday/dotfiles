@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+# Works on MacOS and Linux
+if [ -f ~/perl5/perlbrew/etc/bashrc ]; then
+  source ~/perl5/perlbrew/etc/bashrc
+fi
