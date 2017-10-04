@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 source ../shell/.function
 
+# TODO: Consider switching to rbenv: https://github.com/rbenv/rbenv
+
 if is-macos && is-executable brew; then
   brew install gpg2
 fi
