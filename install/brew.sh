@@ -11,6 +11,8 @@ else
   ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install)"
 fi
 
+source ../shell/.exports_brew
+
 if is-executable brew; then
   brew update
   brew upgrade
