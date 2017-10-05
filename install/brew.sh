@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
+source ../shell/.function
 
 if ! is-executable ruby -o ! is-executable curl -o ! is-executable git; then
   echo "Skipped: Homebrew (missing: ruby, curl and/or git)"
-  return
 fi
 
 if is-macos; then
@@ -11,5 +11,7 @@ else
   ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install)"
 fi
 
-brew update
-brew upgrade
+if is-executable brew; then
+  brew update
+  brew upgrade
+fi
