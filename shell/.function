@@ -11,14 +11,6 @@ can-sudo() {
   sudo -v
 }
 
-can-brew() {
-  is-executable brew
-}
-
-is-brewed() {
-  brew list "$1" > /dev/null 2>&1 || return 1;
-}
-
 is-macos() {
   [[ "$OSTYPE" =~ ^darwin ]] || return 1;
 }
@@ -62,6 +54,16 @@ dedupe-path() {
 
 in-path() {
   [ :$PATH: == *:"$1":* ]
+}
+
+# brew detection
+
+can-brew() {
+  is-executable brew
+}
+
+is-brewed() {
+  brew list "$1" > /dev/null 2>&1 || return 1;
 }
 
 # Update config file
