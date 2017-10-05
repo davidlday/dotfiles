@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 # Java
+# TODO: Consider leveraging jenv instead
+# https://github.com/gcuisinier/jenv
 if is-macos; then
   is-executable "/usr/libexec/java_home" && export JAVA_HOME=$(/usr/libexec/java_home)
 else
