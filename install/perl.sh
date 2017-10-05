@@ -3,10 +3,12 @@ source ../shell/.function
 
 # plenv
 if can-brew; then
-  brew update
-  brew upgrade
   brew install plenv
-  brew install perl-build
+  # perl-build broken in linuxbrew
+  # brew install perl-build
+  # Recommended way to install anyhow:
+  # https://github.com/tokuhirom/Perl-Build
+  git clone git://github.com/tokuhirom/Perl-Build.git ~/.plenv/plugins/perl-build/
 else
   echo "Skipped: plenv. Install brew first (brew.sh)."
 fi
