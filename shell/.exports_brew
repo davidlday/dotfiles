@@ -14,3 +14,7 @@ if ! is-macos; then
     export XDG_DATA_DIRS="${BREW_HOME}/share:${XDG_DATA_DIRS}"
   fi
 fi
+
+if [ -r $(brew --prefix)/etc/bash_completion.d/brew ]; then
+  source $(brew --prefix)/etc/bash_completion.d/brew
+fi
