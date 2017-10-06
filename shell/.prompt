@@ -1,5 +1,14 @@
 #!/usr/bin/env bash
 
+if can-brew; then
+  if [ -f $(brew -prefix)/etc/bash_completion.d/git-completion.bash ]; then
+    source $(brew -prefix)/etc/bash_completion.d/git-completion.bash
+  fi
+  if [ -r $(brew -prefix)/etc/bash_completion.d/git-prompt.sh ]; then
+    source $(brew -prefix)/etc/bash_completion.d/git-prompt.sh
+  fi
+fi
+
 # set variable identifying the chroot you work in (used in the prompt below)
 if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
