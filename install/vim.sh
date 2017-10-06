@@ -1,11 +1,9 @@
 #!/usr/bin/env bash
-source ../shell/.function
 
-# Make sure vim is installed via brew
-if can-brew; then
-  if ! is-brewed vim; then
-    brew install vim
-  fi
+if ! is-executable vim; then
+  echo "Skipped: vim. Apparently vim isn't installed."
+  return
+else
   # Desert Theme: https://vim.sourceforge.io/scripts/script.php?script_id=105
   if [ ! -f ~/.vim/colors/desert.vim ]; then
     echo "Installing Desert Theme"
@@ -29,6 +27,4 @@ if can-brew; then
     git clone https://github.com/editorconfig/editorconfig-vim.git
   fi
   echo "EditorConfig-Vim installed"
-else
-  echo "Skipped: vim.  Install brew first (brew.sh)."
 fi
