@@ -40,7 +40,13 @@ in-path() {
 # Add to path
 
 prepend-path() {
-  [ -d $1 ] && PATH="$1:$PATH"
+  if [ -d $1 ]; then
+    echo "path: Prepending PATH with $1."
+    PATH="$1:$PATH"
+  else
+    echo "path: $1 is not a valid directory."
+    return 1
+  fi
 }
 
 # Remove duplicates (preserving prepended items)
