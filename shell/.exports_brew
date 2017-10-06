@@ -2,16 +2,15 @@
 
 if ! is-macos; then
   if [ -d /home/linuxbrew/.linuxbrew ]; then
-    BREW_HOME=/home/linuxbrew/.linuxbrew
+    export BREW_HOME="/home/linuxbrew/.linuxbrew/bin"
   elif [ -d ~/.linuxbrew ]; then
-    BREW_HOME="${HOME}/.linuxbrew"
+    export BREW_HOME="${HOME}/.linuxbrew"
   fi
-  export PATH="${BREW_HOME}/bin:$PATH"
+  prepend-path "${BREW_HOME}/bin:$PATH"
+  export PATH
   export MANPATH="${BREW_HOME}/share/man:$MANPATH"
   export INFOPATH="${BREW_HOME}/share/info:$INFOPATH"
   if [ -n "${XDG_DATA_DIRS}" ]; then
     export XDG_DATA_DIRS="${BREW_HOME}/share:${XDG_DATA_DIRS}"
   fi
 fi
-
-unset BREW_HOME
