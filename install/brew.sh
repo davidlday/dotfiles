@@ -14,15 +14,14 @@ if ! is-executable brew; then
     elif is-executable yum && can-sudo; then
       sudo yum groupinstall 'Development Tools'
     fi
+    if [ -d /home/linuxbrew/.linuxbrew ]; then
+      prepend-path "/home/linuxbrew/.linuxbrew/bin"
+      export PATH
+    elif [ -d ~/.linuxbrew ]; then
+      prepend-path "${HOME}/.linuxbrew"
+      export PATH
+    fi
   fi
-fi
-
-if [ -d /home/linuxbrew/.linuxbrew ]; then
-  prepend-path "/home/linuxbrew/.linuxbrew/bin"
-  export PATH
-elif [ -d ~/.linuxbrew ]; then
-  prepend-path "${HOME}/.linuxbrew"
-  export PATH
 fi
 
 dedupe-path
