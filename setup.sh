@@ -19,6 +19,10 @@ if is-executable git -a -d "$DOTFILES_DIR/.git"; then git --work-tree="$DOTFILES
 # Ensure directories exists
 mkdir -p ~/.pip/
 
+# TODO: Need to link right things in the right places.
+# See: https://superuser.com/questions/703415/why-do-people-source-bash-profile-from-bashrc-instead-of-the-other-way-round
+# I use MacOS, Ubuntu, and Fedora.
+
 # Bunch of symlinks
 ln -sfv "$DOTFILES_DIR/bash/.bash_profile" ~
 ln -sfv "$DOTFILES_DIR/bash/.inputrc" ~
