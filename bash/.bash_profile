@@ -2,55 +2,57 @@
 
 [ -z "$PS1" ] && return
 
-#umask 022
+# Resolve DOTFILES_DIR (assuming ~/.dotfiles on distros without readlink and/or $BASH_SOURCE/$0)
 
-# set PATH so it includes user's private bin if it exists
-#if [ -d "$HOME/bin" ] ; then
-#    PATH="$HOME/bin:$PATH"
-#fi
+READLINK=$(which greadlink || which readlink)
+CURRENT_SCRIPT=$BASH_SOURCE
 
-# # Java
-# if is-macos; then
-#   export JAVA_HOME=$(/usr/libexec/java_home)
-# else
-#   export JAVA_HOME=$(dirname $(dirname $(readlink -f $(which java))))
-# fi
+if [[ -n $CURRENT_SCRIPT && -x "$READLINK" ]]; then
+  SCRIPT_PATH=$($READLINK -f "$CURRENT_SCRIPT")
+  DOTFILES_DIR=$(dirname "$(dirname "$SCRIPT_PATH")")
+elif [ -d "$HOME/.dotfiles" ]; then
+  DOTFILES_DIR="$HOME/.dotfiles"
+else
+  echo "Unable to find dotfiles, exiting."
+  return
+fi
 
-# # Groovy
-# export GROOVY_HOME=/usr/local/opt/groovy/libexec
+# Read cache
 
-# # Python
-# export PYTHON_HOME="$(dirname $(greadlink -f $(which python3)))"
-#
-# # Virtualenvwrapper
-# # Which python to use
-# export VIRTUALENVWRAPPER_PYTHON="$(greadlink -f $(which python2))"
-# # set where virutal environments will live
-# export WORKON_HOME=$HOME/.virtualenvs
-# # ensure all new environments are isolated from the site-packages directory
-# export VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--no-site-packages'
-# # use the same directory for virtualenvs as virtualenvwrapper
-# export PIP_VIRTUALENV_BASE=$WORKON_HOME
-# # makes pip detect an active virtualenv and install to it
-# export PIP_RESPECT_VIRTUALENV=true
-# # pip should only run if there is a virtualenv currently activated
-# export PIP_REQUIRE_VIRTUALENV=true
-# if [[ -r /usr/local/bin/virtualenvwrapper.sh ]]; then
-#     source /usr/local/bin/virtualenvwrapper.sh
-# else
-#     echo "WARNING: Can't find virtualenvwrapper.sh"
-# fi
-# # Don't use site-wide packages
-# export VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--no-site-packages'
-# # Default project directory
-# export PROJECT_HOME=$HOME/Projects
+DOTFILES_CACHE="$DOTFILES_DIR/.cache.sh"
+[ -f "$DOTFILES_CACHE" ] && . "$DOTFILES_CACHE"
 
-# # RVM
-# export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-# [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-#
-# Git Prompt
-#if [ -f "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh" ]; then
-#    __GIT_PROMPT_DIR=$(brew --prefix)/opt/bash-git-prompt/share
-#    source "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh"
-#fi
+# Finally we can source the dotfiles (order matters)
+
+for DOTFILE in "$DOTFILES_DIR"/shell/.{function,function_*,path,env,alias,completion,grep,prompt,.exports_*,custom}; do
+  [ -f "$DOTFILE" ] && . "$DOTFILE"
+done
+
+if is-macos; then
+  for DOTFILE in "$DOTFILES_DIR"/shell/.{env,alias,function}.macos; do
+    [ -f "$DOTFILE" ] && . "$DOTFILE"
+  done
+fi
+
+# Set LSCOLORS
+# TODO: Need to make dircolors work on MacOS
+
+eval "$(dircolors "$DOTFILES_DIR"/shell/.dircolors)"
+
+# Hook for extra/custom stuff
+
+DOTFILES_EXTRA_DIR="$HOME/.extra"
+
+if [ -d "$DOTFILES_EXTRA_DIR" ]; then
+  for EXTRAFILE in "$DOTFILES_EXTRA_DIR"/runcom/*.sh; do
+    [ -f "$EXTRAFILE" ] && . "$EXTRAFILE"
+  done
+fi
+
+# Clean up
+
+unset READLINK CURRENT_SCRIPT SCRIPT_PATH DOTFILE EXTRAFILE
+
+# Export
+
+export DOTFILES_DIR DOTFILES_EXTRA_DIR
