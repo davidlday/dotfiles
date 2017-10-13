@@ -2,10 +2,22 @@
 
 [ -z "$PS1" ] && return
 
-# Resolve DOTFILES_DIR (assuming ~/.dotfiles on distros without readlink and/or $BASH_SOURCE/$0)
+# Find greadlink/readlink
+# Original: READLINK=$(which greadlink || which readlink)
+READLINK=""
+if [ type --all greadlink >/dev/nul 2>$1 ]; then
+  READLINK=$(which greadlink)
+elif [ type --all readlink >/dev/null 2>&1 ]; then
+  READLINK=$(which readlink)
+else
+  unset READLINK
+fi
 
-READLINK=$(which greadlink || which readlink)
+# Find current script source, if possible
+
 CURRENT_SCRIPT=$BASH_SOURCE
+
+# Resolve DOTFILES_DIR (assuming ~/.dotfiles on distros without readlink and/or $BASH_SOURCE/$0)
 
 if [[ -n $CURRENT_SCRIPT && -x "$READLINK" ]]; then
   SCRIPT_PATH=$($READLINK -f "$CURRENT_SCRIPT")
@@ -35,7 +47,7 @@ if is-macos; then
 fi
 
 # Set LSCOLORS
-# TODO: Need to make dircolors work on MacOS
+# TODO: Need to make dircolors work on MacOS via gdircolors.
 
 eval "$(dircolors "$DOTFILES_DIR"/shell/.dircolors)"
 
