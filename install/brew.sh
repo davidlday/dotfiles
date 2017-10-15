@@ -19,7 +19,7 @@ if ! is-executable brew; then
       prepend-path "/home/linuxbrew/.linuxbrew/bin"
       export PATH
     elif [ -d ~/.linuxbrew ]; then
-      prepend-path "${HOME}/.linuxbrew"
+      prepend-path "${HOME}/.linuxbrew/bin"
       export PATH
     fi
   fi
@@ -34,5 +34,4 @@ brew upgrade
 brew install \
   vim \
   curl \
-  vim \
   maven
