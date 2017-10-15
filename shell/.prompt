@@ -1,12 +1,18 @@
 #!/usr/bin/env bash
 
-if can-brew; then
-  if [ -f $(brew -prefix)/etc/bash_completion.d/git-completion.bash ]; then
-    source $(brew -prefix)/etc/bash_completion.d/git-completion.bash
+if is-macos; then
+  if can-brew; then
+    if [ -f $(brew --prefix)/etc/bash_completion.d/git-completion.bash ]; then
+      source $(brew --prefix)/etc/bash_completion.d/git-completion.bash
+    fi
+    if [ -r $(brew --prefix)/etc/bash_completion.d/git-prompt.sh ]; then
+      source $(brew --prefix)/etc/bash_completion.d/git-prompt.sh
+    fi
   fi
-  if [ -r $(brew -prefix)/etc/bash_completion.d/git-prompt.sh ]; then
-    source $(brew -prefix)/etc/bash_completion.d/git-prompt.sh
-  fi
+else
+  if [ -f /etc/bash_completion.d/git-prompt ]; then
+    source /etc/bash_completion.d/git-prompt ]
+  fi 
 fi
 
 # set variable identifying the chroot you work in (used in the prompt below)
@@ -24,8 +30,7 @@ esac
 # should be on the output of commands, not on the prompt
 #force_color_prompt=yes
 
-if [ -n /etc/bash_completion.d/git-prompt ]; then
-  source /etc/bash_completion.d/git-prompt
+if is-executable __git_ps1; then
   GIT_PS1_SHOWDIRTYSTATE=1
   GIT_PS1_SHOWSTASHSTATE=1
   GIT_PS1_SHOWUNTRACKEDFILES=1
