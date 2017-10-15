@@ -1,40 +1,70 @@
-# ~/.bashrc: executed by bash(1) for non-login shells.
-# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
-# for examples
-
-# if running bash
-if [ -n "$BASH_VERSION" ]; then
-    # include .bashrc if it exists
-    if [ -f "$HOME/.bashrc" ]; then
-    . "$HOME/.bashrc"
-    fi
-fi
-
 # If not running interactively, don't do anything
+
 [ -z "$PS1" ] && return
 
-# don't put duplicate lines in the history. See bash(1) for more options
-export HISTCONTROL=ignoredups
-# ... and ignore same sucessive entries.
-export HISTCONTROL=ignoreboth
-
-# check the window size after each command and, if necessary,
-# update the values of LINES and COLUMNS.
-shopt -s checkwinsize
-
-# make less more friendly for non-text input files, see lesspipe(1)
-[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
-
-# set variable identifying the chroot you work in (used in the prompt below)
-if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
-    debian_chroot=$(cat /etc/debian_chroot)
+# Find greadlink/readlink
+# Original: READLINK=$(which greadlink || which readlink)
+READLINK=""
+if [ type --all greadlink >/dev/null 2>&1 ]; then
+  READLINK=$(which greadlink)
+elif [ type --all readlink >/dev/null 2>&1 ]; then
+  READLINK=$(which readlink)
+else
+  unset READLINK
 fi
 
-# Global Pip per http://hackercodex.com/guide/python-development-environment-on-mac-osx/
-gpip(){
-   PIP_REQUIRE_VIRTUALENV="" pip2 "$@"
-}
-gpip3(){
-   PIP_REQUIRE_VIRTUALENV="" pip3 "$@"
-}
+# Find current script source, if possible
 
+CURRENT_SCRIPT=$BASH_SOURCE
+
+# Resolve DOTFILES_DIR (assuming ~/.dotfiles on distros without readlink and/or $BASH_SOURCE/$0)
+
+if [[ -n $CURRENT_SCRIPT && -x "$READLINK" ]]; then
+  SCRIPT_PATH=$($READLINK -f "$CURRENT_SCRIPT")
+  DOTFILES_DIR=$(dirname "$(dirname "$SCRIPT_PATH")")
+elif [ -d "$HOME/.dotfiles" ]; then
+  DOTFILES_DIR="$HOME/.dotfiles"
+else
+  echo "Unable to find dotfiles, exiting."
+  return
+fi
+
+# Read cache
+
+DOTFILES_CACHE="$DOTFILES_DIR/.cache.sh"
+[ -f "$DOTFILES_CACHE" ] && . "$DOTFILES_CACHE"
+
+# Finally we can source the dotfiles (order matters)
+
+for DOTFILE in "$DOTFILES_DIR"/shell/.{function,function_*,path,env,alias,completion,grep,prompt,.exports_*,custom}; do
+  [ -f "$DOTFILE" ] && . "$DOTFILE"
+done
+
+if is-macos; then
+  for DOTFILE in "$DOTFILES_DIR"/shell/.{env,alias,function}.macos; do
+    [ -f "$DOTFILE" ] && . "$DOTFILE"
+  done
+fi
+
+# Set LSCOLORS
+# TODO: Need to make dircolors work on MacOS via gdircolors.
+
+eval "$(dircolors "$DOTFILES_DIR"/shell/.dircolors)"
+
+# Hook for extra/custom stuff
+
+DOTFILES_EXTRA_DIR="$HOME/.extra"
+
+if [ -d "$DOTFILES_EXTRA_DIR" ]; then
+  for EXTRAFILE in "$DOTFILES_EXTRA_DIR"/runcom/*.sh; do
+    [ -f "$EXTRAFILE" ] && . "$EXTRAFILE"
+  done
+fi
+
+# Clean up
+
+unset READLINK CURRENT_SCRIPT SCRIPT_PATH DOTFILE EXTRAFILE
+
+# Export
+
+export DOTFILES_DIR DOTFILES_EXTRA_DIR
