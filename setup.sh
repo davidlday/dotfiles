@@ -9,8 +9,7 @@ DOTFILES_EXTRA_DIR="$HOME/.extra"
 
 # Common functions
 
-. "$DOTFILES_DIR/system/.function"
-. "$DOTFILES_DIR/system/.function_network"
+. "$DOTFILES_DIR/shell/.function"
 
 # Update dotfiles itself first
 
