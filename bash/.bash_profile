@@ -5,7 +5,7 @@
 # Find greadlink/readlink
 # Original: READLINK=$(which greadlink || which readlink)
 READLINK=""
-if [ type --all greadlink >/dev/null 2>$1 ]; then
+if [ type --all greadlink >/dev/null 2>&1 ]; then
   READLINK=$(which greadlink)
 elif [ type --all readlink >/dev/null 2>&1 ]; then
   READLINK=$(which readlink)
