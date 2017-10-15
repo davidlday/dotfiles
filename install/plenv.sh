@@ -1,7 +1,7 @@
-#!/sbin/nologin
+#!/usr/bin/env bash
+
 # Install plenv
 # https://github.com/tokuhirom/plenv
-
 if is-mac; then
   # Use Homebrew on MacOS
   # https://github.com/tokuhirom/plenv#homebrew-on-mac-os-x
