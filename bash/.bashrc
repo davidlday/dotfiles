@@ -48,8 +48,11 @@ fi
 
 # Set LSCOLORS
 # TODO: Need to make dircolors work on MacOS via gdircolors.
-
-eval "$(dircolors "$DOTFILES_DIR"/shell/.dircolors)"
+if is-macos; then
+  eval "$(gdircolors "$DOTFILES_DIR"/shell/.dircolors)"
+else
+  eval "$(dircolors "$DOTFILES_DIR"/shell/.dircolors)"
+fi
 
 # Hook for extra/custom stuff
 
