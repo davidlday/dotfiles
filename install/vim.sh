@@ -25,6 +25,7 @@ else
     echo "Installing EditorConfig-Vim"
     cd ~/.vim/bundle
     git clone https://github.com/editorconfig/editorconfig-vim.git
+    cd -
   fi
   echo "EditorConfig-Vim installed"
 fi
