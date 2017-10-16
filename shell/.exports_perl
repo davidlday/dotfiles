@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
 # plenv
-if [ -d ~/.plenv ]; then
-  prepend-path ~/.plenv/bin
-  eval "$(plenv init -)"
-fi
+[ -d ~/.plenv/bin ] && prepend-path ~/.plenv/bin
+is-executable plenv && eval "$(plenv init -)"
