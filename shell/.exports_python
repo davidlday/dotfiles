@@ -3,13 +3,15 @@
 
 # virtualenvwrapper
 if is-macos; then
-    [[ -r /usr/local/bin/virtualenvwrapper.sh ]] && source /usr/local/bin/virtualenvwrapper.sh
-    READLINK=greadlink
+  VIRTUALENVWRAPPER_SRC=/usr/local/bin/virtualenvwrapper_lazy.sh
+  READLINK=greadlink
 else
-    [[ -r /etc/bash_completion.d/virtualenvwrapper ]] && source /etc/bash_completion.d/virtualenvwrapper
-    READLINK=readlink
+  VIRTUALENVWRAPPER_SRC=/etc/bash_completion.d/virtualenvwrapper
+  READLINK=readlink
 fi
-if is-executable mkvirtualenv; then
+
+if [ -r "${VIRTUALENVWRAPPER_SRC}" ]; then
+  echo "Setting up virtualenvwrapper."
   # Which python to use
   export VIRTUALENVWRAPPER_PYTHON="$(${READLINK} -f $(which python2))"
   # set where virutal environments will live
@@ -24,6 +26,8 @@ if is-executable mkvirtualenv; then
   export VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--no-site-packages'
   # Default project directory
   export PROJECT_HOME=${HOME}/Projects
+
+  source "${VIRTUALENVWRAPPER_SRC}"
 
   # Global Pip per http://hackercodex.com/guide/python-development-environment-on-mac-osx/
 
