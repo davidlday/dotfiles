@@ -1,4 +1,4 @@
-#!/sbin/nologin
+#!/usr/bin/env bash
 # Exports for (Home/Linux)brew.
 
 if ! is-macos; then
@@ -7,15 +7,19 @@ if ! is-macos; then
   elif [ -d ~/.linuxbrew ]; then
     export BREW_HOME="${HOME}/.linuxbrew"
   fi
-  prepend-path "${BREW_HOME}/bin"
-  export MANPATH="${BREW_HOME}/share/man:$MANPATH"
-  export INFOPATH="${BREW_HOME}/share/info:$INFOPATH"
-  if [ -n "${XDG_DATA_DIRS}" ]; then
-    export XDG_DATA_DIRS="${BREW_HOME}/share:${XDG_DATA_DIRS}"
+  if [ -d "${BREW_HOME}/bin" ]; then
+    prepend-path "${BREW_HOME}/bin"
+    export MANPATH="${BREW_HOME}/share/man:$MANPATH"
+    export INFOPATH="${BREW_HOME}/share/info:$INFOPATH"
+    if [ -n "${XDG_DATA_DIRS}" ]; then
+      export XDG_DATA_DIRS="${BREW_HOME}/share:${XDG_DATA_DIRS}"
+    fi
+    unset BREW_HOME
   fi
-  unset BREW_HOME
 fi
 
-if [ -r $(brew --prefix)/etc/bash_completion.d/brew ]; then
-  source $(brew --prefix)/etc/bash_completion.d/brew
+if is-executable brew; then
+  if [ -r $(brew --prefix)/etc/bash_completion.d/brew ]; then
+    source $(brew --prefix)/etc/bash_completion.d/brew
+  fi
 fi
