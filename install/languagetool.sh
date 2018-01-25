@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
 
-LT_VER=3.9
+LT_VER=4.0
 
 if is-mac; then
   brew install languagetool
 else
+  sudo rm -rf /opt/languagetool
   sudo mkdir -p /opt/languagetool
   curl https://languagetool.org/download/LanguageTool-${LT_VER}.zip -o /tmp/languagetool.zip
   cd /tmp
@@ -12,4 +13,5 @@ else
   sudo cp -r LanguageTool-${LT_VER}/* /opt/languagetool/
   rm -rf /tmp/LanguageTool-${LT_VER}
   rm /tmp/languagetool.zip
+  cd -
 fi
