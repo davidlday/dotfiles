@@ -11,9 +11,9 @@ if ! is-executable brew; then
   else
     ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install)"
     if is-executable apt && can-sudo; then
-      sudo apt install build-essential
+      sudo apt-get install build-essential curl file git python-setuptools
     elif is-executable yum && can-sudo; then
-      sudo yum groupinstall 'Development Tools'
+      sudo yum groupinstall 'Development Tools' && sudo yum install curl file git python-setuptools
     fi
     if [ -d /home/linuxbrew/.linuxbrew ]; then
       prepend-path "/home/linuxbrew/.linuxbrew/bin"
