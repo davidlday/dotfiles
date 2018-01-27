@@ -23,12 +23,10 @@
 '.source.gfm':
   'Setup Beat':
     'prefix': 'setup'
-    'body': '<!-- SETUP: $1 \n
-      -->'
+    'body': '<!-- SETUP: $1 -->'
   'Payoff Beat':
     'prefix': 'payoff'
-    'body': '<!-- PAYOFF: $1 \n
-      -->'
+    'body': '<!-- PAYOFF: $1 -->'
   'Story Front Matter':
     'prefix': 'storyhead'
     'body': '---\n
