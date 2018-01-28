@@ -30,8 +30,10 @@ dedupe-path
 brew update
 brew upgrade
 
-# Install good stuff
-brew install \
-  vim \
-  curl \
-  maven
+# Install good stuff on mac
+if is-mac; then
+  brew install \
+    vim \
+    curl \
+    maven
+fi
