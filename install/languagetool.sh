@@ -2,7 +2,7 @@
 
 LT_VER=4.0
 
-if is-mac; then
+if can-brew; then
   brew install languagetool
 else
   sudo rm -rf /opt/languagetool
