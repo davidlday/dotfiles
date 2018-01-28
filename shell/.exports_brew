@@ -18,7 +18,7 @@ if ! is-macos; then
   fi
 fi
 
-if is-executable brew; then
+if can-brew; then
   if [ -r $(brew --prefix)/etc/bash_completion.d/brew ]; then
     source $(brew --prefix)/etc/bash_completion.d/brew
   fi
