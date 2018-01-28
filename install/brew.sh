@@ -31,7 +31,7 @@ brew update
 brew upgrade
 
 # Install good stuff on mac
-if is-mac; then
+if is-macos; then
   brew install \
     vim \
     curl \
