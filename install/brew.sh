@@ -5,7 +5,7 @@ if ! is-executable ruby -o ! is-executable curl -o ! is-executable git; then
   echo "Skipped: Homebrew (missing: ruby, curl and/or git)"
 fi
 
-if ! is-executable brew; then
+if ! can-brew; then
   if is-macos; then
     ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
   else
@@ -30,8 +30,10 @@ dedupe-path
 brew update
 brew upgrade
 
-# Install good stuff
-brew install \
-  vim \
-  curl \
-  maven
+# Install good stuff on mac
+if is-macos; then
+  brew install \
+    vim \
+    curl \
+    maven
+fi

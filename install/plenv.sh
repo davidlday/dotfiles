@@ -2,7 +2,7 @@
 
 # Install plenv
 # https://github.com/tokuhirom/plenv
-if is-mac; then
+if is-macos; then
   # Use Homebrew on MacOS
   # https://github.com/tokuhirom/plenv#homebrew-on-mac-os-x
   brew install plenv

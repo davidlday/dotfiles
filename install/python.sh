@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 source ../shell/.function
 
-if is-macos && is-executable brew; then
+if is-macos && can-brew; then
   # Use Homebrew on Mac
   brew install python python3 pyenv pyenv-virtualenv pyenv-virtualenvwrapper
 elif is-executable apt && can-sudo; then
