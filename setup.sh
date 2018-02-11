@@ -31,6 +31,7 @@ ln -sfv "$DOTFILES_DIR/vim/.vimrc" ~
 ln -sfv "$DOTFILES_DIR/git/.gitconfig" ~
 ln -sfv "$DOTFILES_DIR/git/.gitignore_global" ~
 ln -sfv "$DOTFILES_DIR/pip/pip.conf" ~/.pip/pip.conf
+ln -sfv "$DOTFILES_DIR/pypi/.pypirc" ~/.pypirc
 ln -sfv "$DOTFILES_DIR/atom/snippets.cson" ~/.atom/snippets.cson
 
 # Package managers & packages
