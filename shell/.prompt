@@ -12,7 +12,7 @@ if is-macos; then
 else
   if [ -f /etc/bash_completion.d/git-prompt ]; then
     source /etc/bash_completion.d/git-prompt ]
-  fi 
+  fi
 fi
 
 # set variable identifying the chroot you work in (used in the prompt below)
@@ -56,3 +56,8 @@ else
     PS1='\n${debian_chroot:+($debian_chroot)}\u@\h:\w$(__git_ps1 " (%s)")\n\$ '
 fi
 unset color_prompt force_color_prompt
+
+# direnv
+if is-executable direnv; then
+  eval "$(direnv hook bash)"
+fi
