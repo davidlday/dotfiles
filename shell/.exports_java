@@ -4,6 +4,8 @@
 # https://github.com/gcuisinier/jenv
 if is-macos; then
   is-executable "/usr/libexec/java_home" && export JAVA_HOME=$(/usr/libexec/java_home)
+elif is-executable javac; then
+  export JAVA_HOME=$(dirname $(dirname $(readlink -f $(which javac))))
 else
   export JAVA_HOME=$(dirname $(dirname $(readlink -f $(which java))))
 fi
