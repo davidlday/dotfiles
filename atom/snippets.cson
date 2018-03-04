@@ -27,6 +27,9 @@
   'Payoff Beat':
     'prefix': 'payoff'
     'body': '<!-- PAYOFF: $1 -->'
+  'Story Idea':
+    'prefix': 'idea'
+    'body': '<!-- IDEA: $1 -->'
   'Story Front Matter':
     'prefix': 'storyhead'
     'body': '---\n
@@ -38,6 +41,4 @@
     zip: 43230\n
     email: david@davidlday.com\n
     phone: 1-614-795-3329\n
-    synopsis: |\n
-      \n
     ---'
