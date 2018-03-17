@@ -33,6 +33,7 @@ ln -sfv "$DOTFILES_DIR/git/.gitignore_global" ~
 ln -sfv "$DOTFILES_DIR/pip/pip.conf" ~/.pip/pip.conf
 ln -sfv "$DOTFILES_DIR/pypi/.pypirc" ~/.pypirc
 ln -sfv "$DOTFILES_DIR/atom/snippets.cson" ~/.atom/snippets.cson
+ln -sfv "$DOTFILES_DIR/cookiecutter/.cookiecutterrc" ~/.cookiecutterrc
 
 # Package managers & packages
 # My preference is to manually install things I need when I need them.
