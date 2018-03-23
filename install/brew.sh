@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+source ../shell/.function
 
 # Install Homebrew or linuxbrew
 if ! is-executable ruby -o ! is-executable curl -o ! is-executable git; then
