@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+source ../shell/.function
 
 if ! is-executable vim; then
   echo "Skipped: vim. Apparently vim isn't installed."
