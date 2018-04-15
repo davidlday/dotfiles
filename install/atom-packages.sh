@@ -4,6 +4,7 @@ source ../shell/.function
 if is-executable apm; then
   apm install \
     atom-focus-mode \
+    atom-beautify \
     busy-signal \
     editorconfig \
     git-plus \
