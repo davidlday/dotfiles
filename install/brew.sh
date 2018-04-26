@@ -35,6 +35,16 @@ brew upgrade
 if is-macos; then
   brew install \
     vim \
-    curl \
-    maven
+    curl
 fi
+
+# Install good stuff on everything
+brew install \
+  cookiecutter \
+  maven \
+  pandoc \
+  python \
+  python@2 \
+  ruby \
+  travis \
+  tree
