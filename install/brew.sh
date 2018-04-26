@@ -10,12 +10,12 @@ if ! can-brew; then
   if is-macos; then
     ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
   else
-    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install)"
     if is-executable apt && can-sudo; then
-      sudo apt-get install build-essential curl file git python-setuptools
+      sudo apt-get --yes install build-essential curl file git python-setuptools ruby
     elif is-executable yum && can-sudo; then
-      sudo yum groupinstall 'Development Tools' && sudo yum install curl file git python-setuptools
+      sudo yum groupinstall 'Development Tools' && sudo yum install curl file git python-setuptools ruby
     fi
+    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install)"
     if [ -d /home/linuxbrew/.linuxbrew ]; then
       prepend-path "/home/linuxbrew/.linuxbrew/bin"
       export PATH
