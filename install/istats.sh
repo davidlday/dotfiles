@@ -4,7 +4,7 @@
 gem install iStats
 
 # sensors for cthulhu
-declare -a sensors=(TA0p TA0P TG0D TL0P TPCD TCGc TCXc TC0c TC1c TC2c TC3c TM0P TM1P TM2P TM3P)
+declare -a sensors=(TA0p TA0P TG0D TL0P TPCD TCGc TCXc TC0c TC1c TC2c TC3c TM0P TM1P TM2P TM3P TH0P)
 
 for i in "${sensors[@]}"
 do
