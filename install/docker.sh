@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 source ../shell/.function
 
+# https://linuxconfig.org/how-to-install-docker-on-ubuntu-18-04-bionic-beaver
+# Stable not yet available
+
 # Make sure all dockers are removed.
 sudo apt remove docker docker.io docker-ce
 sudo apt autoremove
