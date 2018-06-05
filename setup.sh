@@ -8,44 +8,42 @@ DOTFILES_CACHE="$DOTFILES_DIR/.cache.sh"
 DOTFILES_EXTRA_DIR="$HOME/.extra"
 
 # Common functions
-
-. "$DOTFILES_DIR/shell/.function"
+# shellcheck source=shell/.function
+source "$DOTFILES_DIR/shell/.function"
 
 # Update dotfiles itself first
 
 if is-executable git -a -d "$DOTFILES_DIR/.git"; then git --work-tree="$DOTFILES_DIR" --git-dir="$DOTFILES_DIR/.git" pull origin master; fi
 
 # Ensure directories exists
-mkdir -p ~/.pip/
+mkdir -p "$HOME/.pip/"
 
 # TODO: Need to link right things in the right places.
 # See: https://superuser.com/questions/703415/why-do-people-source-bash-profile-from-bashrc-instead-of-the-other-way-round
 # I use MacOS, Ubuntu, and Fedora.
 
 # Bunch of symlinks
-ln -sfv "$DOTFILES_DIR/bash/.bashrc" ~
-ln -sfv "$DOTFILES_DIR/bash/.inputrc" ~
-ln -sfv "$DOTFILES_DIR/gem/.gemrc" ~
-ln -sfv "$DOTFILES_DIR/editorconfig/.editorconfig" ~
-ln -sfv "$DOTFILES_DIR/vim/.vimrc" ~
-ln -sfv "$DOTFILES_DIR/git/.gitconfig" ~
-ln -sfv "$DOTFILES_DIR/git/.gitignore_global" ~
-ln -sfv "$DOTFILES_DIR/pip/pip.conf" ~/.pip/pip.conf
-ln -sfv "$DOTFILES_DIR/pypi/.pypirc" ~/.pypirc
-ln -sfv "$DOTFILES_DIR/atom/snippets.cson" ~/.atom/snippets.cson
-ln -sfv "$DOTFILES_DIR/cookiecutter/.cookiecutterrc" ~/.cookiecutterrc
+ln -sfv "$DOTFILES_DIR/bash/.bashrc" "$HOME"
+ln -sfv "$DOTFILES_DIR/bash/.inputrc" "$HOME"
+ln -sfv "$DOTFILES_DIR/gem/.gemrc" "$HOME"
+ln -sfv "$DOTFILES_DIR/editorconfig/.editorconfig" "$HOME"
+ln -sfv "$DOTFILES_DIR/vim/.vimrc" "$HOME"
+ln -sfv "$DOTFILES_DIR/git/.gitconfig" "$HOME"
+ln -sfv "$DOTFILES_DIR/git/.gitignore_global" "$HOME"
+ln -sfv "$DOTFILES_DIR/pip/pip.conf" "$HOME/.pip/pip.conf"
+ln -sfv "$DOTFILES_DIR/pypi/.pypirc" "$HOME/.pypirc"
+ln -sfv "$DOTFILES_DIR/atom/snippets.cson" "$HOME/.atom/snippets.cson"
+ln -sfv "$DOTFILES_DIR/cookiecutter/.cookiecutterrc" "$HOME/.cookiecutterrc"
 
 # Package managers & packages
 # My preference is to manually install things I need when I need them.
-
 # . "$DOTFILES_DIR/install/brew.sh"
 
 # Run tests
-
 if is-executable bats; then bats test/*.bats; else echo "Skipped: tests (missing: bats)"; fi
 
 # Install extra stuff
-
-if [ -d "$DOTFILES_EXTRA_DIR" -a -f "$DOTFILES_EXTRA_DIR/install.sh" ]; then
-  . "$DOTFILES_EXTRA_DIR/install.sh"
+if [ -d "$DOTFILES_EXTRA_DIR" ] && [ -f "$DOTFILES_EXTRA_DIR/install.sh" ]; then
+  # shellcheck source=/dev/null
+  source "$DOTFILES_EXTRA_DIR/install.sh"
 fi
