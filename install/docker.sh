@@ -5,6 +5,9 @@ if ! is-macos; then
   # https://linuxconfig.org/how-to-install-docker-on-ubuntu-18-04-bionic-beaver
   # Stable not yet available
 
+  # TODO: Package detection and upgrade. Make idempotent.
+  # See: https://stackoverflow.com/questions/1298066/check-if-a-package-is-installed-and-then-install-it-if-its-not#1298103
+
   # https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-docker-ce
   # Make sure all dockers are removed.
   sudo apt remove docker docker-engine docker.io
