@@ -13,6 +13,7 @@ if is-executable apm; then
     intentions \
     linter \
     linter-languagetool \
+    linter-shellcheck \
     linter-ui-default \
     linter-write-good \
     open-terminal-here \
