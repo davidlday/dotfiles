@@ -31,16 +31,10 @@ is-supported() {
   fi
 }
 
-# Check if in path
-
-in-path() {
-  [ :$PATH: == *:"$1":* ]
-}
-
 # Add to path
 
 prepend-path() {
-  if [ -d $1 ]; then
+  if [ -d "$1" ]; then
     echo "path: Prepending PATH with $1."
     PATH="$1:$PATH"
   else
@@ -53,13 +47,13 @@ prepend-path() {
 # Source: http://unix.stackexchange.com/a/40755
 
 dedupe-path() {
-  PATH=`echo -n $PATH | awk -v RS=: '{ if (!arr[$0]++) {printf("%s%s",!ln++?"":":",$0)}}'`
+  PATH=$(echo -n "$PATH" | awk -v RS=: '{ if (!arr[$0]++) {printf("%s%s",!ln++?"":":",$0)}}')
 }
 
 # Check if in path
 
 in-path() {
-  [ :$PATH: == *:"$1":* ]
+  [[ :"$PATH": == *:"$1":* ]]
 }
 
 # brew detection
@@ -123,8 +117,8 @@ function version_compare () {
   local op="${3}"
 
   # Convert passed versions into values for comparison.
-  local v1=$(version_compare_convert ${1})
-  local v2=$(version_compare_convert ${2})
+  local v1=$(version_compare_convert "${1}")
+  local v2=$(version_compare_convert "${2}")
 
   # Immediately return when comparing version equality (which doesn't require sorting).
   if [ -z "${op}" ]; then
@@ -185,13 +179,13 @@ function version_compare_convert () {
   version="${version%%-*}"
 
   # Separate version (minus pre-release label) into an array using periods as the separator.
-  local OLDIFS=${IFS} && local IFS=. && version=(${version%-*}) && IFS=${OLDIFS}
+  local OLDIFS="${IFS}" && local IFS=. && version=("${version%-*}") && IFS="${OLDIFS}"
 
   # Unfortunately, we must use sed to strip of leading zeros here.
-  local major=$(echo ${version[0]:=0} | sed 's/^0*//')
-  local minor=$(echo ${version[1]:=0} | sed 's/^0*//')
-  local patch=$(echo ${version[2]:=0} | sed 's/^0*//')
-  local build=$(echo ${version[3]:=0} | sed 's/^0*//')
+  local major=$(echo "${version[0]:=0}" | sed 's/^0*//')
+  local minor=$(echo "${version[1]:=0}" | sed 's/^0*//')
+  local patch=$(echo "${version[2]:=0}" | sed 's/^0*//')
+  local build=$(echo "${version[3]:=0}" | sed 's/^0*//')
 
   # Combine the version parts and pad everything with zeros, except major.
   printf "%s%04d%04d%04d%s\n" "${major}" "${minor}" "${patch}" "${build}" "${prerelease}"
