@@ -2,16 +2,19 @@
 
 if is-macos; then
   if can-brew; then
-    if [ -f $(brew --prefix)/etc/bash_completion.d/git-completion.bash ]; then
-      source $(brew --prefix)/etc/bash_completion.d/git-completion.bash
+    if [ -f "$(brew --prefix)/etc/bash_completion.d/git-completion.bash" ]; then
+      # shellcheck source=/dev/null
+      source "$(brew --prefix)/etc/bash_completion.d/git-completion.bash"
     fi
-    if [ -r $(brew --prefix)/etc/bash_completion.d/git-prompt.sh ]; then
-      source $(brew --prefix)/etc/bash_completion.d/git-prompt.sh
+    if [ -r "$(brew --prefix)/etc/bash_completion.d/git-prompt.sh" ]; then
+      # shellcheck source=/dev/null
+      source "$(brew --prefix)/etc/bash_completion.d/git-prompt.sh"
     fi
   fi
 else
   if [ -f /etc/bash_completion.d/git-prompt ]; then
-    source /etc/bash_completion.d/git-prompt ]
+     # shellcheck source=/dev/null
+    source /etc/bash_completion.d/git-prompt
   fi
 fi
 
@@ -29,24 +32,25 @@ esac
 # off by default to not distract the user: the focus in a terminal window
 # should be on the output of commands, not on the prompt
 #force_color_prompt=yes
+force_color_prompt=
 
 if is-executable __git_ps1; then
-  GIT_PS1_SHOWDIRTYSTATE=1
-  GIT_PS1_SHOWSTASHSTATE=1
-  GIT_PS1_SHOWUNTRACKEDFILES=1
-  GIT_PS1_SHOWUPSTREAM="auto"
-  GIT_PS1_SHOWCOLORHINTS=1
+  export GIT_PS1_SHOWDIRTYSTATE=1
+  export GIT_PS1_SHOWSTASHSTATE=1
+  export GIT_PS1_SHOWUNTRACKEDFILES=1
+  export GIT_PS1_SHOWUPSTREAM="auto"
+  export GIT_PS1_SHOWCOLORHINTS=1
 fi
 
 if [ -n "$force_color_prompt" ]; then
-    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-	# We have color support; assume it's compliant with Ecma-48
-	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-	# a case would tend to support setf rather than setaf.)
-	color_prompt=yes
-    else
-	color_prompt=
-    fi
+  if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
+    # We have color support; assume it's compliant with Ecma-48
+    # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+    # a case would tend to support setf rather than setaf.)
+    color_prompt=yes
+  else
+  	color_prompt=
+  fi
 fi
 
 if [ "$color_prompt" = yes ]; then

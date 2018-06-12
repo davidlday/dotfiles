@@ -15,18 +15,19 @@ if [ -r "${VIRTUALENVWRAPPER_SRC}" ]; then
   # Which python to use
   # export VIRTUALENVWRAPPER_PYTHON="$(${READLINK} -f $(which python2))"
   # set where virutal environments will live
-  export WORKON_HOME=${HOME}/.virtualenvs
+  export WORKON_HOME="${HOME}/.virtualenvs"
   # ensure all new environments are isolated from the site-packages directory
   export VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--no-site-packages'
   # use the same directory for virtualenvs as virtualenvwrapper
-  export PIP_VIRTUALENV_BASE=${WORKON_HOME}
+  export PIP_VIRTUALENV_BASE="${WORKON_HOME}"
   # pip should only run if there is a virtualenv currently activated
   export PIP_REQUIRE_VIRTUALENV=true
   # Don't use site-wide packages
   export VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--no-site-packages'
   # Default project directory
-  export PROJECT_HOME=${HOME}/Projects
+  export PROJECT_HOME="${HOME}/Projects"
 
+  # shellcheck source=/dev/null
   source "${VIRTUALENVWRAPPER_SRC}"
 
   # Global Pip per http://hackercodex.com/guide/python-development-environment-on-mac-osx/
@@ -40,6 +41,5 @@ if [ -r "${VIRTUALENVWRAPPER_SRC}" ]; then
   }
 
 fi
-
 
 unset READLINK

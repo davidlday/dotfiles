@@ -19,7 +19,8 @@ if ! is-macos; then
 fi
 
 if can-brew; then
-  if [ -r $(brew --prefix)/etc/bash_completion.d/brew ]; then
-    source $(brew --prefix)/etc/bash_completion.d/brew
+  if [ -r "$(brew --prefix)/etc/bash_completion.d/brew" ]; then
+    # shellcheck source=/dev/null
+    source "$(brew --prefix)/etc/bash_completion.d/brew"
   fi
 fi
