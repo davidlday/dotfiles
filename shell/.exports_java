@@ -2,16 +2,12 @@
 # Java
 # TODO: Consider leveraging jenv instead
 # https://github.com/gcuisinier/jenv
-if is-macos; then
-  if is-executable "/usr/libexec/java_home"; then
-    export JAVA_HOME
-    JAVA_HOME="$(/usr/libexec/java_home)"
-  fi
+export JAVA_HOME
+if is-macos && is-executable "/usr/libexec/java_home"; then
+  JAVA_HOME="$(/usr/libexec/java_home)"
 elif is-executable javac; then
-  export JAVA_HOME
   JAVA_HOME="$(dirname "$(dirname "$(readlink -f "$(command -v javac)")")")"
 else
-  export JAVA_HOME
   JAVA_HOME="$(dirname "$(dirname "$(readlink -f "$(command -v java)")")")"
 fi
 echo "JAVA_HOME=${JAVA_HOME}"
