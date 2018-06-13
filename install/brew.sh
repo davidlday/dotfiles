@@ -35,7 +35,9 @@ brew upgrade
 if is-macos; then
   brew install \
     vim \
-    curl
+    curl \
+    coreutils \
+    git
 fi
 
 # Install good stuff on everything
@@ -46,5 +48,7 @@ brew install \
   python \
   python@2 \
   ruby \
+  shellcheck \
+  sqlite \
   travis \
   tree
