@@ -4,16 +4,12 @@
 # virtualenvwrapper
 if is-macos; then
   VIRTUALENVWRAPPER_SRC=/usr/local/bin/virtualenvwrapper_lazy.sh
-  # READLINK=greadlink
 else
   VIRTUALENVWRAPPER_SRC=/etc/bash_completion.d/virtualenvwrapper
-  # READLINK=readlink
 fi
 
 if [ -r "${VIRTUALENVWRAPPER_SRC}" ]; then
   echo "Setting up virtualenvwrapper."
-  # Which python to use
-  # export VIRTUALENVWRAPPER_PYTHON="$(${READLINK} -f $(which python2))"
   # set where virutal environments will live
   export WORKON_HOME="${HOME}/.virtualenvs"
   # ensure all new environments are isolated from the site-packages directory
@@ -41,5 +37,3 @@ if [ -r "${VIRTUALENVWRAPPER_SRC}" ]; then
   }
 
 fi
-
-unset READLINK

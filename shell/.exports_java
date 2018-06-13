@@ -6,8 +6,8 @@ export JAVA_HOME
 if is-macos && is-executable "/usr/libexec/java_home"; then
   JAVA_HOME="$(/usr/libexec/java_home)"
 elif is-executable javac; then
-  JAVA_HOME="$(dirname "$(dirname "$(readlink -f "$(command -v javac)")")")"
+  JAVA_HOME="$(dirname "$(dirname "$(realpath "$(command -v javac)")")")"
 else
-  JAVA_HOME="$(dirname "$(dirname "$(readlink -f "$(command -v java)")")")"
+  JAVA_HOME="$(dirname "$(dirname "$(realpath "$(command -v java)")")")"
 fi
 echo "JAVA_HOME=${JAVA_HOME}"
