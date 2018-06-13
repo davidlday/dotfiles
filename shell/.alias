@@ -15,9 +15,13 @@ LS_COLORS=$(is-supported "ls --color" --color -G)
 LS_TIMESTYLEISO=$(is-supported "ls --time-style=long-iso" --time-style=long-iso)
 LS_GROUPDIRSFIRST=$(is-supported "ls --group-directories-first" --group-directories-first)
 
+# shellcheck disable=SC2139
 alias l="ls -lahA $LS_COLORS $LS_TIMESTYLEISO $LS_GROUPDIRSFIRST"
+# shellcheck disable=SC2139
 alias ll="ls -lA $LS_COLORS"
+# shellcheck disable=SC2139
 alias lt="ls -lhAtr $LS_COLORS $LS_TIMESTYLEISO $LS_GROUPDIRSFIRST"
+# shellcheck disable=SC2139
 alias ld="ls -ld $LS_COLORS */"
 alias lpm="stat -c '%a %n' *"
 
@@ -27,7 +31,7 @@ alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
 alias -- -="cd -"                  # Go to previous dir with -
-alias cd.='cd $(readlink -f .)'    # Go to real dir (i.e. if current dir is linked)
+alias cd.='cd $(realpath .)'    # Go to real dir (i.e. if current dir is linked)
 
 alias df='df -h'
 alias du='du -h'
@@ -54,11 +58,12 @@ elif is-supported "echo | grep --exclude=.cvs ''"; then
   done
 fi
 unset PATTERN
+# shellcheck disable=SC2139
 alias grep="grep $GREP_OPTIONS"
 export GREP_COLOR='1;32'
 
 # Reload the shell (i.e. invoke as a login shell)
-alias reload="exec ${SHELL} -l"
+alias reload='exec $SHELL -l'
 
 # Print each PATH entry on a separate line
 alias path='echo -e ${PATH//:/\\n}'
