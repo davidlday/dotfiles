@@ -1,18 +1,19 @@
 #!/usr/bin/env bash
+
 # If not running interactively, don't do anything
 
 [ -z "$PS1" ] && return
 
-# Find greadlink/readlink
-READLINK=$(command -v greadlink || command -v readlink)
+# Not strictly necessary, but left over from old readlink/greadlink.
+REALPATH=$(command -v realpath)
 
 # Find current script source, if possible
 CURRENT_SCRIPT="${BASH_SOURCE[0]}"
 
-# Resolve DOTFILES_DIR (assuming ~/.dotfiles on distros without readlink and/or $BASH_SOURCE/$0)
+# Resolve DOTFILES_DIR (assuming ~/.dotfiles on distros without realpath and/or $BASH_SOURCE/$0)
 
-if [[ -n $CURRENT_SCRIPT && -x "$READLINK" ]]; then
-  SCRIPT_PATH=$($READLINK -f "$CURRENT_SCRIPT")
+if [[ -n $CURRENT_SCRIPT && -x "$REALPATH" ]]; then
+  SCRIPT_PATH=$($REALPATH "$CURRENT_SCRIPT")
   DOTFILES_DIR=$(dirname "$(dirname "$SCRIPT_PATH")")
 elif [ -d "$HOME/.dotfiles" ]; then
   DOTFILES_DIR="$HOME/.dotfiles"
@@ -61,7 +62,7 @@ fi
 
 # Clean up
 
-unset READLINK CURRENT_SCRIPT SCRIPT_PATH DOTFILE EXTRAFILE
+unset REALPATH CURRENT_SCRIPT SCRIPT_PATH DOTFILE EXTRAFILE
 
 # Export
 
