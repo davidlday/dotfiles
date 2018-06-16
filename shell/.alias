@@ -73,3 +73,6 @@ if [ ! "$(uname -s)" = "Darwin" ]; then
     alias pbcopy='xsel --clipboard --input'
     alias pbpaste='xsel --clipboard --output'
 fi
+
+# Always use vim instead of vi
+alias vi='vim'
