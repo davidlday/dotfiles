@@ -11,7 +11,7 @@ if ! is-macos && is-executable apt; then
 
   # Restore GNOME Terminal settings
   # https://askubuntu.com/questions/967517/backup-gnome-terminal
-  dconf load /org/gnome/terminal < ../gnome-terminal/gnome_terminal_profile.txt
+  source ./gnome-terminal.sh
 else
   echo "Man, you're on a Mac! This is only for Ubuntu."
 fi
