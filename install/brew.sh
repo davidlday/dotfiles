@@ -4,6 +4,7 @@ source ../shell/.function
 # Install Homebrew or linuxbrew
 if ! is-executable ruby -o ! is-executable curl -o ! is-executable git; then
   echo "Skipped: Homebrew (missing: ruby, curl and/or git)"
+  exit 1
 fi
 
 if ! can-brew; then
