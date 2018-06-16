@@ -20,7 +20,7 @@ if ! can-brew; then
     if [ -d /home/linuxbrew/.linuxbrew ]; then
       prepend-path "/home/linuxbrew/.linuxbrew/bin"
       export PATH
-    elif [ -d ~/.linuxbrew ]; then
+    elif [ -d "$HOME/.linuxbrew" ]; then
       prepend-path "${HOME}/.linuxbrew/bin"
       export PATH
     fi
