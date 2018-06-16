@@ -1,16 +1,16 @@
 [user]
-	name = David L. Day
-	email = dday376@gmail.com
+  name = David L. Day
+  email = dday376@gmail.com
 
 [github]
-	user = davidlday
+  user = davidlday
 
 [push]
   default = simple
   followTags = true
 
 [core]
-	excludesfile = ~/.gitignore_global
+  excludesfile = ~/.gitignore_global
 
 [color]
   ui = auto
