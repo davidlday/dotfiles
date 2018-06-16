@@ -25,6 +25,8 @@ if ! can-brew; then
       export PATH
     fi
   fi
+else
+  echo "Brew already installed. Running updates."
 fi
 
 dedupe-path
@@ -53,3 +55,5 @@ brew install \
   sqlite \
   travis \
   tree
+
+echo "Brew installation done."
