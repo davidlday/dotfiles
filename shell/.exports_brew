@@ -4,7 +4,7 @@
 if ! is-macos; then
   if [ -d /home/linuxbrew/.linuxbrew ]; then
     export BREW_HOME="/home/linuxbrew/.linuxbrew"
-  elif [ -d ~/.linuxbrew ]; then
+  elif [ -d "$HOME/.linuxbrew" ]; then
     export BREW_HOME="${HOME}/.linuxbrew"
   fi
   if [ -d "${BREW_HOME}/bin" ]; then
