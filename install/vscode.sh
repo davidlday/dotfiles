@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# Not strictly necessary, but left over from old readlink/greadlink.
+REALPATH=$(command -v realpath)
+
 # Find current script source, if possible
 CURRENT_SCRIPT="${BASH_SOURCE[0]}"
 
