@@ -34,18 +34,18 @@ dedupe-path
 brew update
 brew upgrade
 
-# Install good stuff on mac
+# Install coreutils on mac
 if is-macos; then
   brew install \
-    vim \
-    curl \
-    coreutils \
-    git
+    coreutils
 fi
 
 # Install good stuff on everything
 brew install \
   cookiecutter \
+  curl \
+  git \
+  bash-git-prompt
   maven \
   pandoc \
   python \
@@ -54,6 +54,7 @@ brew install \
   shellcheck \
   sqlite \
   travis \
-  tree
+  tree \
+  vim
 
 echo "Brew installation done."
