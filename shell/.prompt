@@ -1,15 +1,13 @@
 #!/usr/bin/env bash
 
-if is-macos; then
-  if can-brew; then
-    if [ -f "$(brew --prefix)/etc/bash_completion.d/git-completion.bash" ]; then
-      # shellcheck source=/dev/null
-      source "$(brew --prefix)/etc/bash_completion.d/git-completion.bash"
-    fi
-    if [ -r "$(brew --prefix)/etc/bash_completion.d/git-prompt.sh" ]; then
-      # shellcheck source=/dev/null
-      source "$(brew --prefix)/etc/bash_completion.d/git-prompt.sh"
-    fi
+if can-brew; then
+  if [ -f "$(brew --prefix)/etc/bash_completion.d/git-completion.bash" ]; then
+    # shellcheck source=/dev/null
+    source "$(brew --prefix)/etc/bash_completion.d/git-completion.bash"
+  fi
+  if [ -r "$(brew --prefix)/etc/bash_completion.d/git-prompt.sh" ]; then
+    # shellcheck source=/dev/null
+    source "$(brew --prefix)/etc/bash_completion.d/git-prompt.sh"
   fi
 else
   if [ -f /etc/bash_completion.d/git-prompt ]; then
