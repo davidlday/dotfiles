@@ -15,7 +15,7 @@ source "$DOTFILES_DIR/shell/.function"
 if is-executable git -a -d "$DOTFILES_DIR/.git"; then git --work-tree="$DOTFILES_DIR" --git-dir="$DOTFILES_DIR/.git" pull origin master; fi
 
 # Ensure directories exists
-mkdir -p "$HOME/.pip/"
+mkdir -p "$HOME/.pip/" "$HOME/.atom/"
 
 # TODO: Need to link right things in the right places.
 # See: https://superuser.com/questions/703415/why-do-people-source-bash-profile-from-bashrc-instead-of-the-other-way-round
