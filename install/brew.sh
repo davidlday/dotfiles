@@ -44,10 +44,11 @@ fi
 
 # Install good stuff on everything
 brew install \
+  bash-git-prompt \
   cookiecutter \
   curl \
   git \
-  bash-git-prompt \
+  languagetool \
   maven \
   pandoc \
   python \
