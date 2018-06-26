@@ -29,3 +29,9 @@ if ! is-executable code; then
 else
   echo "Looks like Visual Studio Code's already installed. Try running an update, bro!"
 fi
+
+if is-executable code; then
+  echo "Installing Visual Studio Code extensions."
+  # Install extensions
+  source ./vscode-exentions.sh
+fi
