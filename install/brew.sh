@@ -1,5 +1,26 @@
 #!/usr/bin/env bash
-source ../shell/.function
+
+# Not strictly necessary, but left over from old readlink/greadlink.
+REALPATH=$(command -v realpath)
+
+# Find current script source, if possible
+CURRENT_SCRIPT="${BASH_SOURCE[0]}"
+
+# Resolve DOTFILES_DIR (assuming ~/.dotfiles on distros without realpath and/or $BASH_SOURCE/$0)
+if [[ -n $CURRENT_SCRIPT && -x "$REALPATH" ]]; then
+  SCRIPT_PATH=$($REALPATH "$CURRENT_SCRIPT")
+  DOTFILES_DIR=$(dirname "$(dirname "$SCRIPT_PATH")")
+elif [ -d "$HOME/.dotfiles" ]; then
+  DOTFILES_DIR="$HOME/.dotfiles"
+else
+  echo "Unable to find dotfiles, exiting."
+  return
+fi
+
+# Source functions, assuming they're not already
+# shellcheck source=/dev/null
+source "$DOTFILES_DIR/shell/.function"
+
 
 if ! can-brew; then
   if is-macos; then
@@ -19,7 +40,7 @@ if ! can-brew; then
         sudo yum groupinstall 'Development Tools' && sudo yum install curl file git
         sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
       else
-        echo "Dudo, you're not on a Mac and you can't apt, dnf, or yum. What the hell platform you on, bro?"
+        echo "Dude, you're not on a Mac and you can't apt, dnf, or yum. What the hell platform you on, bro?"
       fi
     else
       echo "Need sudo to install LinuxBrew, bro!"
@@ -29,10 +50,12 @@ else
   echo "Brew already installed. Running updates."
 fi
 
-source ../shell/.exports_brew
+# shellcheck source=/dev/null
+source "$DOTFILES_DIR/shell/.exports_brew"
 
 dedupe-path
 
+echo "Updating brew... may take a minute or so."
 brew update
 brew upgrade
 
