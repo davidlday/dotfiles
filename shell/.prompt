@@ -1,21 +1,5 @@
 #!/usr/bin/env bash
 
-if can-brew; then
-  if [ -f "$(brew --prefix)/etc/bash_completion.d/git-completion.bash" ]; then
-    # shellcheck source=/dev/null
-    source "$(brew --prefix)/etc/bash_completion.d/git-completion.bash"
-  fi
-  if [ -r "$(brew --prefix)/etc/bash_completion.d/git-prompt.sh" ]; then
-    # shellcheck source=/dev/null
-    source "$(brew --prefix)/etc/bash_completion.d/git-prompt.sh"
-  fi
-else
-  if [ -f /etc/bash_completion.d/git-prompt ]; then
-     # shellcheck source=/dev/null
-    source /etc/bash_completion.d/git-prompt
-  fi
-fi
-
 # set variable identifying the chroot you work in (used in the prompt below)
 if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
@@ -29,16 +13,8 @@ esac
 # uncomment for a colored prompt, if the terminal has the capability; turned
 # off by default to not distract the user: the focus in a terminal window
 # should be on the output of commands, not on the prompt
-#force_color_prompt=yes
-force_color_prompt=
-
-if is-executable __git_ps1; then
-  export GIT_PS1_SHOWDIRTYSTATE=1
-  export GIT_PS1_SHOWSTASHSTATE=1
-  export GIT_PS1_SHOWUNTRACKEDFILES=1
-  export GIT_PS1_SHOWUPSTREAM="auto"
-  export GIT_PS1_SHOWCOLORHINTS=1
-fi
+force_color_prompt=yes
+# force_color_prompt=
 
 if [ -n "$force_color_prompt" ]; then
   if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
@@ -51,12 +27,50 @@ if [ -n "$force_color_prompt" ]; then
   fi
 fi
 
-if [ "$color_prompt" = yes ]; then
-  PS1='[\u@\h \W$(__git_ps1 " (%s)")]\$ '
-    PS1='\n${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]$(__git_ps1 " (%s)")\n\$ '
-else
-    PS1='\n${debian_chroot:+($debian_chroot)}\u@\h:\w$(__git_ps1 " (%s)")\n\$ '
+if ! can-brew; then
+  echo "Bro! You didn't install brew? Installing it for you."
+  source "$DOTFILES_DIR/install/brew.sh"
 fi
+BREW_PREFIX="$(brew --prefix)"
+
+# Is git installed via brew?
+if [ ! -f "$BREW_PREFIX/etc/bash_completion.d/git-completion.bash" ]; then
+  brew install git
+fi
+# Is bash-git-prompt installed via brew?
+if [ ! -f "$BREW_PREFIX/opt/bash-git-prompt/share/gitprompt.sh" ]; then
+  brew install bash-git-prompt
+fi
+
+# Just in case something weird happened
+if can-brew; then
+  # git bash completion
+  # shellcheck source=/dev/null
+  source "$BREW_PREFIX/etc/bash_completion.d/git-completion.bash"
+  # git bash prompt
+  __GIT_PROMPT_DIR="$BREW_PREFIX/opt/bash-git-prompt/share"
+  GIT_PROMPT_THEME=Solarized_UserHost
+  # shellcheck source=/dev/null
+  source "$BREW_PREFIX/opt/bash-git-prompt/share/gitprompt.sh"
+else
+  # Give a fallback prompt
+  if [ -f /etc/bash_completion.d/git-prompt ]; then
+     # shellcheck source=/dev/null
+    source /etc/bash_completion.d/git-prompt
+  fi
+  if is-executable __git_ps1; then
+    export GIT_PS1_SHOWDIRTYSTATE=1
+    export GIT_PS1_SHOWSTASHSTATE=1
+    export GIT_PS1_SHOWUNTRACKEDFILES=1
+    export GIT_PS1_SHOWUPSTREAM="auto"
+    export GIT_PS1_SHOWCOLORHINTS=1
+    PS1='[\u@\h \W$(__git_ps1 " (%s)")]\$ '
+    PS1='\n${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]$(__git_ps1 " (%s)")\n\$ '
+  else
+    PS1='\n${debian_chroot:+($debian_chroot)}\u@\h:\w\n\$ '
+  fi
+fi
+
 unset color_prompt force_color_prompt
 
 # direnv
