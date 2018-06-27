@@ -21,7 +21,7 @@ fi
 # shellcheck source=/dev/null
 source "$DOTFILES_DIR/shell/.function"
 
-
+# Install Linux/HomeBrew depending on platform
 if ! can-brew; then
   if is-macos; then
     echo "Installing HomeBrew (https://brew.sh)"
@@ -41,7 +41,9 @@ if ! can-brew; then
         sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
       else
         echo "Dude, you're not on a Mac and you can't apt, dnf, or yum. What the hell platform you on, bro?"
+        exit 1
       fi
+      echo "LinuxBrew installed."
     else
       echo "Need sudo to install LinuxBrew, bro!"
     fi
