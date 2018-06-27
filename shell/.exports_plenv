@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
-# plenv
+# Is plenv executable in my home directory?
+# Should be installed via Linux/HomeBrew instead
 [ -d "$HOME/.plenv/bin" ] && prepend-path "$HOME/.plenv/bin"
+# Intialize plenv
 is-executable plenv && eval "$(plenv init -)"
