@@ -24,7 +24,7 @@ source "$DOTFILES_DIR/shell/.function"
 echo "Attempting to install Visual Studio Code..."
 if ! is-executable code; then
   if ! is-macos; then
-    if is-executable apt; then
+    if can-apt; then
       curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
       sudo mv microsoft.gpg /etc/apt/trusted.gpg.d/microsoft.gpg
       sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list'
@@ -33,10 +33,10 @@ if ! is-executable code; then
     elif is-executable rpm; then
       sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
       sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'
-      if is-executable dnf; then
+      if can-dnf; then
         sudo dnf check-update
         sudo dnf install code
-      elif is-executable yum; then
+      elif can-yum; then
         sudo yum --assumeyes check-update
         sudo yum --assumeyes install code
       else

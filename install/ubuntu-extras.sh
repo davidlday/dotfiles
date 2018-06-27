@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 source ../shell/.function
 
-if ! is-macos && is-executable apt; then
+if ! is-macos && can-apt; then
   # Etcher
   echo "deb https://dl.bintray.com/resin-io/debian stable etcher" | sudo tee /etc/apt/sources.list.d/etcher.list
   sudo apt-key adv --keyserver hkp://pgp.mit.edu:80 --recv-keys 379CE192D401AB61

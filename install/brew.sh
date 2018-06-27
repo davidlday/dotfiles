@@ -9,13 +9,13 @@ if ! can-brew; then
   else
     if can-sudo; then
       echo "Installing LinuxBrew (https://linuxbrew.sh)"
-      if is-executable apt; then
+      if can-apt; then
         sudo apt-get --yes install build-essential curl file git python-setuptools ruby
         sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
-      elif is-executable dnf; then
+      elif can-dnf; then
         sudo dnf groupinstall 'Development Tools' && sudo dnf install curl file git
         sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
-      elif is-executable yum; then
+      elif can-yum; then
         sudo yum groupinstall 'Development Tools' && sudo yum install curl file git
         sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
       else
