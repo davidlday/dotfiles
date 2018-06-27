@@ -7,7 +7,7 @@ REALPATH=$(command -v realpath)
 CURRENT_SCRIPT="${BASH_SOURCE[0]}"
 
 # Resolve DOTFILES_DIR (assuming ~/.dotfiles on distros without realpath and/or $BASH_SOURCE/$0)
-if [[ -n $CURRENT_SCRIPT && -x "$REALPATH" ]]; then
+if [[ -n "$CURRENT_SCRIPT" && -x "$REALPATH" ]]; then
   SCRIPT_PATH=$($REALPATH "$CURRENT_SCRIPT")
   DOTFILES_DIR=$(dirname "$(dirname "$SCRIPT_PATH")")
 elif [ -d "$HOME/.dotfiles" ]; then
@@ -61,10 +61,11 @@ echo "Updating brew... may take a minute or so."
 brew update
 brew upgrade
 
-# Install coreutils on mac
+# Install Mac-specific needs
 if is-macos; then
   brew install \
-    coreutils
+    coreutils \
+    ssh-copy-id
 fi
 
 # Install good stuff on everything
