@@ -5,15 +5,15 @@
 is-executable getconf && PATH="$($(command -v getconf) PATH)"
 
 # Prepend new items to path (if directory exists)
-
+# Order matters
 prepend-path "/bin"
 prepend-path "/usr/bin"
 prepend-path "/usr/local/bin"
-prepend-path "$HOME/bin"
-prepend-path "$HOME/.local/bin"
 prepend-path "/sbin"
 prepend-path "/usr/sbin"
 prepend-path "/usr/local/sbin"
+prepend-path "$HOME/bin"
+prepend-path "$HOME/.local/bin"
 
 dedupe-path
 
