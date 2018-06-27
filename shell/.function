@@ -31,6 +31,18 @@ is-supported() {
   fi
 }
 
+can-apt() {
+  is-executable apt
+}
+
+can-dnf() {
+  is-executable dnf
+}
+
+can-yum() {
+  is-executable yum
+}
+
 # Add to path
 
 prepend-path() {
