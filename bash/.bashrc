@@ -12,7 +12,7 @@ CURRENT_SCRIPT="${BASH_SOURCE[0]}"
 
 # Resolve DOTFILES_DIR (assuming ~/.dotfiles on distros without realpath and/or $BASH_SOURCE/$0)
 
-if [[ -n $CURRENT_SCRIPT && -x "$REALPATH" ]]; then
+if [[ -n "$CURRENT_SCRIPT" && -x "$REALPATH" ]]; then
   SCRIPT_PATH=$($REALPATH "$CURRENT_SCRIPT")
   DOTFILES_DIR=$(dirname "$(dirname "$SCRIPT_PATH")")
 elif [ -d "$HOME/.dotfiles" ]; then
@@ -30,7 +30,7 @@ DOTFILES_CACHE="$DOTFILES_DIR/.cache.sh"
 
 # Finally we can source the dotfiles (order matters)
 
-for DOTFILE in "$DOTFILES_DIR"/shell/.{function,function_*,path,env,alias,completion,grep,exports_*,prompt,custom}; do
+for DOTFILE in "$DOTFILES_DIR"/shell/.{function,function_*,exports_*,path,env,alias,completion,grep,prompt,custom}; do
   # shellcheck source=/dev/null
   [ -f "$DOTFILE" ] && source "$DOTFILE"
 done
@@ -54,7 +54,7 @@ fi
 
 DOTFILES_LOCAL_DIR="$HOME/.local/dotfiles"
 if [ -d "$DOTFILES_LOCAL_DIR" ]; then
-  for DOTFILE in "$DOTFILES_LOCAL_DIR"/shell/.{function,function_*,path,env,alias,completion,grep,prompt,exports_*,custom}; do
+  for DOTFILE in "$DOTFILES_LOCAL_DIR"/shell/.{function,function_*,exports_*,path,env,alias,completion,grep,prompt,custom}; do
     # shellcheck source=/dev/null
     [ -f "$DOTFILE" ] && source "$DOTFILE"
   done
