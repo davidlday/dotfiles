@@ -8,7 +8,7 @@ get() {
 # Feature detection
 
 can-sudo() {
-  sudo -v
+  /usr/bin/sudo -v
 }
 
 is-macos() {
@@ -32,15 +32,15 @@ is-supported() {
 }
 
 can-apt() {
-  is-executable apt
+  is-executable /usr/bin/apt
 }
 
 can-dnf() {
-  is-executable dnf
+  is-executable /usr/bin/dnf
 }
 
 can-yum() {
-  is-executable yum
+  is-executable /usr/bin/yum
 }
 
 # Add to path
