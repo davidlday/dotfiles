@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+BREW_PREFIX="$(brew --prefix)"
+
+if can-brew; then
+  if [ -r "$BREW_PREFIX/etc/bash_completion" ]; then
+    # shellcheck source=/dev/null
+    source "$BREW_PREFIX/etc/bash_completion"
+  fi
+fi
+
+unset BREW_PREFIX
