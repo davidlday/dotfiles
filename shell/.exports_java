@@ -10,4 +10,3 @@ elif is-executable javac; then
 else
   JAVA_HOME="$(dirname "$(dirname "$(realpath "$(command -v java)")")")"
 fi
-echo "JAVA_HOME=${JAVA_HOME}"
