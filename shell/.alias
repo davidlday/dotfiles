@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
 # Shortcuts
 alias path='echo -e ${PATH//:/\\n}'
-alias reload="source ~/.bash_profile"
+# alias reload="source $HOME/.bashrc"
+# Reload the shell (i.e. invoke as a login shell)
+# alias reload='exec $SHELL -l'
+alias reload='exec $SHELL'
 
 # List declared aliases, functions, paths
 
@@ -61,9 +64,6 @@ unset PATTERN
 # shellcheck disable=SC2139
 alias grep="grep $GREP_OPTIONS"
 export GREP_COLOR='1;32'
-
-# Reload the shell (i.e. invoke as a login shell)
-alias reload='exec $SHELL -l'
 
 # Print each PATH entry on a separate line
 alias path='echo -e ${PATH//:/\\n}'
