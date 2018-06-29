@@ -77,9 +77,10 @@ brew install \
   languagetool \
   maven \
   pandoc \
-  python \
-  python@2 \
-  ruby \
+  plenv \
+  pyenv \
+  pyenv-virtualenv \
+  rbenv \
   shellcheck \
   sqlite \
   travis \
