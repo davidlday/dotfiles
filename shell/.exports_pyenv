@@ -5,3 +5,4 @@
 [ -d "$HOME/.pyenv/bin" ] && prepend-path "$HOME/.pyenv/bin"
 # Intialize pyenv
 is-executable pyenv && eval "$(pyenv init -)"
+is-executable pyenv-virtualenv-init && eval "$(pyenv virtualenv-init -)"
