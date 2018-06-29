@@ -53,7 +53,7 @@ else
 fi
 
 # shellcheck source=/dev/null
-source "$DOTFILES_DIR/shell/.exports_brew"
+source "$DOTFILES_DIR/.path"
 
 dedupe-path
 
