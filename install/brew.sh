@@ -20,6 +20,8 @@ fi
 # Source functions, assuming they're not already
 # shellcheck source=/dev/null
 source "$DOTFILES_DIR/shell/.function"
+# shellcheck source=/dev/null
+source "$DOTFILES_DIR/shell/.alias"
 
 # Install Linux/HomeBrew depending on platform
 if ! can-brew; then
@@ -70,10 +72,12 @@ fi
 
 # Install good stuff on everything
 brew install \
+  bash-completion \
   bash-git-prompt \
   cookiecutter \
   curl \
   git \
+  goenv \
   languagetool \
   maven \
   pandoc \
@@ -86,5 +90,7 @@ brew install \
   travis \
   tree \
   vim
+
+reload
 
 echo "Brew installation done."
