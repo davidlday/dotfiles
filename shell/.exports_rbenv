@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+# Is rbenv executable in my home directory?
+# Should be installed via Linux/HomeBrew instead
+[ -d "$HOME/.rbenv/bin" ] && prepend-path "$HOME/.rbenv/bin"
+# Intialize rbenv
+is-executable rbenv && eval "$(rbenv init -)"
