@@ -53,7 +53,7 @@ else
 fi
 
 # shellcheck source=/dev/null
-source "$DOTFILES_DIR/.path"
+source "$DOTFILES_DIR/shell/.path"
 
 dedupe-path
 
