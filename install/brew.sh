@@ -72,7 +72,7 @@ fi
 
 # Install good stuff on everything
 brew install \
-  bash-completion \
+  bash-completion@2 \
   bash-git-prompt \
   cookiecutter \
   curl \

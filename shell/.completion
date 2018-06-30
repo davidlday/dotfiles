@@ -6,6 +6,13 @@ if can-brew; then
   if [ -r "$BREW_PREFIX/etc/bash_completion" ]; then
     # shellcheck source=/dev/null
     source "$BREW_PREFIX/etc/bash_completion"
+    echo "Using outdated bash-completion. Update to bash-completion@2:"
+    echo "    brew uninstall bash-completion"
+    echo "    brew install bash-completion@2"
+  fi
+  if [ -f "$BREW_PREFIX/share/bash-completion/bash_completion" ]; then
+    # shellcheck source=/dev/null
+    source "$BREW_PREFIX/share/bash-completion/bash_completion"
   fi
 fi
 
