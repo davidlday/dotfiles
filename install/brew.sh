@@ -89,6 +89,7 @@ brew install \
   sqlite \
   travis \
   tree \
+  wget \
   vim
 
 reload
