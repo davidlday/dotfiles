@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+
 # Not strictly necessary, but left over from old readlink/greadlink.
 REALPATH=$(command -v realpath)
 
@@ -24,7 +25,7 @@ if ! is-macos; then
   # Get installed version
   if is-executable atom; then
     # https://gist.github.com/maxrimue/ca69ee78081645e1ef62
-    INSTALLED_VERSION=$(atom --version | grep Atom | cut -d":" -f2)
+    INSTALLED_VERSION=$(atom --version | grep Atom | cut -d":" -f2 | xargs)
   else
     INSTALLED_VERSION="0.0.0"
   fi
@@ -36,14 +37,13 @@ if ! is-macos; then
   GITHUB_VERSION="${GITHUB_VERSION//v/}"
   rm -rf "$ATOM_LATEST"
 
-  echo "Installed version: ${INSTALLED_VERSION}"
-  echo "GitHub version: ${GITHUB_VERSION}"
+  echo "Installed version: '$INSTALLED_VERSION'"
+  echo "GitHub version: '$GITHUB_VERSION'"
 
-  ret=$(version_compare "${INSTALLED_VERSION}" "${GITHUB_VERSION}")
-  if [ "$ret" -gt 0 ]; then
-    echo "Installing latest version."
-    wget --progress=bar -q "https://github.com${GITHUB_URL}" -O /tmp/atom-amd64.deb
-    gnome-software --local-filename=/tmp/atom-amd64.deb
+  if [ "$INSTALLED_VERSION" != "$GITHUB_VERSION" ]; then
+    echo "Installing latest version from https://github.com$GITHUB_URL"
+    wget --progress=bar -q "https://github.com$GITHUB_URL" -O /tmp/atom-amd64.deb
+    sudo dpkg -i /tmp/atom-amd64.deb
   else
     echo "Atom is up-to-date. Nothing to do."
   fi
@@ -52,22 +52,33 @@ else
 fi
 
 if is-executable apm; then
-  echo "Install Atom packages."
-  apm install \
-    atom-focus-mode \
-    atom-beautify \
-    atom-trello \
-    busy-signal \
-    editorconfig \
-    file-icons \
-    git-plus \
-    intentions \
-    linter \
-    linter-languagetool \
-    linter-shellcheck \
-    linter-ui-default \
-    linter-write-good \
-    open-terminal-here \
+  echo "Installing Atom packages."
+  declare -a packages=(
+    atom-focus-mode
+    atom-beautify
+    atom-trello
+    busy-signal
+    editorconfig
+    file-icons
+    git-plus
+    intentions
+    linter
+    linter-languagetool
+    linter-shellcheck
+    linter-ui-default
+    linter-write-good
+    open-terminal-here
     wordcount
+  )
+
+  for package in "${packages[@]}"; do
+    if ls "$HOME/.atom/packages" | grep "$package" >/dev/null 2>&1; then
+      echo "$package already installed."
+    else
+      apm install "$package"
+    fi
+  done
+
 fi
 
+echo "Atom installation done."
