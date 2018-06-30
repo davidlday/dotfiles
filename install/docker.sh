@@ -24,7 +24,7 @@ source "$DOTFILES_DIR/shell/.function"
 if ! is-macos; then
   echo "Installing Docker CE & Docker Compose."
   if can-apt; then
-    if dpkg-query --status docker-ce >/dev/null; then
+    if dpkg-query --status docker-ce >/dev/null 2>&1; then
       echo "Docker CE already installed. Running update / upgrade."
       sudo apt update
       sudo apt upgrade -y
