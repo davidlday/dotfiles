@@ -44,6 +44,7 @@ if ! is-macos; then
     echo "Installing latest version from https://github.com$GITHUB_URL"
     wget --progress=bar -q "https://github.com$GITHUB_URL" -O /tmp/atom-amd64.deb
     sudo dpkg -i /tmp/atom-amd64.deb
+    rm /tmp/atom-amd64.deb
   else
     echo "Atom is up-to-date. Nothing to do."
   fi
