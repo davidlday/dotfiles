@@ -42,7 +42,7 @@ if ! is-macos; then
   ret=$(version_compare "${INSTALLED_VERSION}" "${GITHUB_VERSION}")
   if [ "$ret" -gt 0 ]; then
     echo "Installing latest version."
-    wget --progress=bar -q "https://github.com${GITHUB_URL}" -O /tmp/atom-amd64.deb -q --show-      progress
+    wget --progress=bar -q "https://github.com${GITHUB_URL}" -O /tmp/atom-amd64.deb
     gnome-software --local-filename=/tmp/atom-amd64.deb
   else
     echo "Atom is up-to-date. Nothing to do."
