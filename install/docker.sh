@@ -2,30 +2,63 @@
 source ../shell/.function
 
 if ! is-macos; then
-  # https://linuxconfig.org/how-to-install-docker-on-ubuntu-18-04-bionic-beaver
-  # Stable not yet available
+  if can-apt; then
+    # https://linuxconfig.org/how-to-install-docker-on-ubuntu-18-04-bionic-beaver
+    # Stable not yet available
 
-  # TODO: Package detection and upgrade. Make idempotent.
-  # See: https://stackoverflow.com/questions/1298066/check-if-a-package-is-installed-and-then-install-it-if-its-not#1298103
+    # TODO: Package detection and upgrade. Make idempotent.
+    # See: https://stackoverflow.com/questions/1298066/check-if-a-package-is-installed-and-then-install-it-if-its-not#1298103
 
-  # https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-docker-ce
-  # Make sure all dockers are removed.
-  sudo apt remove docker docker-engine docker.io
-  sudo apt autoremove
+    # https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-docker-ce
+    # Make sure all dockers are removed.
+    sudo apt remove docker docker-engine docker.io
+    sudo apt autoremove
 
-  sudo apt-get update
-  sudo apt-get install \
-    apt-transport-https \
-    ca-certificates \
-    curl \
-    software-properties-common
-  curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-  sudo add-apt-repository \
-    "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
-    $(lsb_release -cs) \
-    stable edge"
-  sudo apt-get update
-  sudo apt-get install docker-ce
+    sudo apt-get update
+    sudo apt-get install \
+      apt-transport-https \
+      ca-certificates \
+      curl \
+      software-properties-common
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+    sudo add-apt-repository \
+      "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+      $(lsb_release -cs) \
+      stable edge"
+    sudo apt-get update
+    sudo apt-get install docker-ce
+  elif can-yum; then
+    # https://docs.docker.com/install/linux/docker-ce/centos/#uninstall-old-versions
+    # Make sure all old dockers are removed
+    sudo yum remove docker \
+      docker-client \
+      docker-client-latest \
+      docker-common \
+      docker-latest \
+      docker-latest-logrotate \
+      docker-logrotate \
+      docker-selinux \
+      docker-engine-selinux \
+      docker-engine
+
+    # https://docs.docker.com/install/linux/docker-ce/centos/#install-using-the-repository
+    # Install dependencies
+    sudo yum update
+    sudo yum install -y yum-utils \
+      device-mapper-persistent-data \
+      lvm2
+    # Set up the repository
+    sudo yum-config-manager \
+      --add-repo \
+      https://download.docker.com/linux/centos/docker-ce.repo
+    # Install docker-ce
+    sudo yum update
+    sudo yum install docker-ce
+  fi
+
+  # Start the service
+  sudo systemctl start docker
+  sudo systemctl enable docker
 
   # https://docs.docker.com/install/linux/linux-postinstall/#manage-docker-as-a-non-root-user
   sudo groupadd docker
