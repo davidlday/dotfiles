@@ -46,3 +46,7 @@ if [ -d "$DOTFILES_LOCAL_DIR" ] && [ -f "$DOTFILES_LOCAL_DIR/install.sh" ]; then
   # shellcheck source=/dev/null
   source "$DOTFILES_LOCAL_DIR/install.sh"
 fi
+
+echo "Checking home directory for broken links. Take note..."
+find "$HOME" -xtype l
+echo "Setup complete."
