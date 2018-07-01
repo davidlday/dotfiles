@@ -33,7 +33,6 @@ ln -sfv "$DOTFILES_DIR/git/.gitconfig" "$HOME"
 ln -sfv "$DOTFILES_DIR/git/.gitignore_global" "$HOME"
 ln -sfv "$DOTFILES_DIR/pip/pip.conf" "$HOME/.pip/pip.conf"
 ln -sfv "$DOTFILES_DIR/pypi/.pypirc" "$HOME/.pypirc"
-ln -sfv "$DOTFILES_DIR/atom/snippets.cson" "$HOME/.atom/snippets.cson"
 ln -sfv "$DOTFILES_DIR/cookiecutter/.cookiecutterrc" "$HOME/.cookiecutterrc"
 
 # Package managers & packages
