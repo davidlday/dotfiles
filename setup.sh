@@ -38,7 +38,8 @@ ln -sfv "$DOTFILES_DIR/cookiecutter/.cookiecutterrc" "$HOME/.cookiecutterrc"
 
 # Package managers & packages
 # My preference is to manually install things I need when I need them.
-# . "$DOTFILES_DIR/install/brew.sh"
+# shellcheck source=/dev/null
+source "$DOTFILES_DIR/install/brew.sh"
 
 # Run tests
 if is-executable bats; then bats test/*.bats; else echo "Skipped: tests (missing: bats)"; fi
