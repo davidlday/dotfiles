@@ -20,8 +20,6 @@ fi
 # Source functions, assuming they're not already
 # shellcheck source=/dev/null
 source "$DOTFILES_DIR/shell/.function"
-# shellcheck source=/dev/null
-source "$DOTFILES_DIR/shell/.alias"
 
 # Install Linux/HomeBrew depending on platform
 if ! can-brew; then
@@ -102,7 +100,5 @@ brew install \
   tree \
   wget \
   vim
-
-reload
 
 echo "Brew installation done."
