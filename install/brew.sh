@@ -64,23 +64,13 @@ brew upgrade
 # Install Mac-specific needs
 if is-macos; then
   brew install \
-    bash \
     coreutils \
     ssh-copy-id
-  if is-executable /usr/local/bin/bash; then
-    if ! grep /usr/local/bin/bash /etc/shells; then
-      echo "Updating default shell for $USER."
-      sudo sh -c 'echo /usr/local/bin/fish >> /etc/shells'
-      chsh -s /usr/local/bin/bash
-      echo "Shell updated:"
-      /usr/local/bin/bash --version
-      echo "You will need to log out and back in."
-    fi
-  fi
 fi
 
 # Install good stuff on everything
 brew install \
+  bash \
   bash-completion@2 \
   bash-git-prompt \
   cookiecutter \
@@ -100,5 +90,19 @@ brew install \
   tree \
   wget \
   vim
+
+# Make sure $BREW_BASH can be used
+BREW_BASH="$(brew --prefix)/bin/bash"
+if is-executable "$BREW_BASH"; then
+  if ! grep "$BREW_BASH" /etc/shells; then
+    echo "Updating default shell for $USER."
+    sudo sh -c "echo $BREW_BASH >> /etc/shells"
+  fi
+  chsh -s $BREW_BASH
+  echo "Shell updated:"
+  "$BREW_BASH" --version
+  echo "You will need to log out and back in."
+fi
+unset BREW_BASH
 
 echo "Brew installation done."
