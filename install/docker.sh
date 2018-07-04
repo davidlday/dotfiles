@@ -105,14 +105,14 @@ if ! is-macos; then
     INSTALLED_VERSION="0.0.0"
   fi
   COMPOSE_LATEST=$(mktemp /tmp/docker-compose-latest-XXXXXXXX)
-  wget -q https://github.com/docker/compose/releases/latest -O "$COMPOSE_LATEST"
+  wget --show-progres --progress=bar -q https://github.com/docker/compose/releases/latest -O "$COMPOSE_LATEST"
   GITHUB_URL=$(< "$COMPOSE_LATEST" grep -o -E 'href="([^"#]+)docker-compose-Linux-x86_64"' | cut -d'"' -f2 | sort | uniq)
   GITHUB_VERSION=$(echo "$GITHUB_URL" | cut -d"/" -f6)
 
   ret=$(version_compare "$INSTALLED_VERSION" "$GITHUB_VERSION")
   if [ "${ret}" == "-1" ]; then
     echo "Installing docker-compose."
-    sudo wget --progress=bar -q "https://github.com$GITHUB_URL" -O /usr/local/bin/docker-compose
+    sudo wget --show-progres --progress=bar -q "https://github.com$GITHUB_URL" -O /usr/local/bin/docker-compose
     sudo chmod +x /usr/local/bin/docker-compose
     echo "Docker-compose installed."
   else
