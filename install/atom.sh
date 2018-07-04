@@ -31,7 +31,7 @@ if ! is-macos; then
   fi
 
   ATOM_LATEST=$(mktemp /tmp/atom-latest-XXXXXXXX)
-  wget -q https://github.com/atom/atom/releases/latest -O "$ATOM_LATEST"
+  wget --show-progres --progress=bar -q https://github.com/atom/atom/releases/latest -O "$ATOM_LATEST"
   GITHUB_URL=$(< "$ATOM_LATEST" grep -o -E 'href="([^"#]+)atom-amd64.deb"' | cut -d'"' -f2 | sort | uniq)
   GITHUB_VERSION=$(echo "$GITHUB_URL" | cut -d"/" -f6)
   GITHUB_VERSION="${GITHUB_VERSION//v/}"
@@ -42,7 +42,7 @@ if ! is-macos; then
 
   if [ "$INSTALLED_VERSION" != "$GITHUB_VERSION" ]; then
     echo "Installing latest version from https://github.com$GITHUB_URL"
-    wget --progress=bar -q "https://github.com$GITHUB_URL" -O /tmp/atom-amd64.deb
+    wget --show-progres --progress=bar -q "https://github.com$GITHUB_URL" -O /tmp/atom-amd64.deb
     sudo dpkg -i /tmp/atom-amd64.deb
     rm /tmp/atom-amd64.deb
   else
