@@ -1,19 +1,23 @@
 #!/usr/bin/env bash
 
-BREW_PREFIX="$(brew --prefix)"
-
-if can-brew; then
-  if [ -r "$BREW_PREFIX/etc/bash_completion" ]; then
+# Linux will have a relatively current bash-completion.
+# Mac will not.
+if [ -f /usr/share/bash-completion/bash_completion ]; then
+  source /usr/share/bash-completion/bash_completion
+elif [ -f /etc/bash_completion ]; then
+  source /etc/bash_completion
+elif can-brew; then
+  BREW_PREFIX="$(brew --prefix)"
+  if [ -f "$BREW_PREFIX/share/bash-completion/bash_completion" ]; then
+    # shellcheck source=/dev/null
+    source "$BREW_PREFIX/share/bash-completion/bash_completion"
+  elif [ -f "$BREW_PREFIX/etc/bash_completion" ]; then
     # shellcheck source=/dev/null
     source "$BREW_PREFIX/etc/bash_completion"
     echo "Using outdated bash-completion. Update to bash-completion@2:"
     echo "    brew uninstall bash-completion"
     echo "    brew install bash-completion@2"
   fi
-  if [ -f "$BREW_PREFIX/share/bash-completion/bash_completion" ]; then
-    # shellcheck source=/dev/null
-    source "$BREW_PREFIX/share/bash-completion/bash_completion"
-  fi
+  unset BREW_PREFIX
 fi
 
-unset BREW_PREFIX
