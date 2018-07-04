@@ -2,11 +2,12 @@
 
 # Linux will have a relatively current bash-completion.
 # Mac will not.
-if [ -f /usr/share/bash-completion/bash_completion ]; then
-  source /usr/share/bash-completion/bash_completion
-elif [ -f /etc/bash_completion ]; then
-  source /etc/bash_completion
-elif can-brew; then
+if ! is-macos; then
+  if [ -d /usr/share/pkgconfig/ ]; then
+    export PKG_CONFIG_PATH=/usr/share/pkgconfig:$PKG_CONFIG_PATH
+  fi
+  source /etc/profile.d/bash_completion.sh
+elif is-macos && can-brew; then
   BREW_PREFIX="$(brew --prefix)"
   if [ -f "$BREW_PREFIX/share/bash-completion/bash_completion" ]; then
     # shellcheck source=/dev/null
