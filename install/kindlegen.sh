@@ -28,7 +28,7 @@ if ! is-executable kindlegen; then
       TMPDIR=$(mktemp -d /tmp/kindlegen-XXXXXXXX)
 
       wget --show-progres --progress=bar -q "$KGEN_LINK" -O "$TMPDIR/kindlegen_linux.tar.gz"
-      mkdir -p "$HOME/.local/opt/KindleGen"
+      mkdir -p "$HOME/.local/opt/KindleGen" "$HOME/.local/bin"
       tar --extract --verbose --gzip --file="$TMPDIR/kindlegen_linux.tar.gz" --directory="$HOME/.local/opt/KindleGen"
       ln -svf "$HOME/.local/opt/KindleGen/kindlegen" "$HOME/.local/bin/kindlegen"
       rm -rf "$TMPDIR"
