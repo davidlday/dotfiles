@@ -31,13 +31,27 @@ if ! can-brew; then
     if can-sudo; then
       echo "Installing LinuxBrew (https://linuxbrew.sh)"
       if can-apt; then
+        # Dependencies for brew
         sudo apt-get --yes install build-essential curl file git python-setuptools ruby
+        # Dependencies for pyenv
+        sudo apt-get --yes install make build-essential libssl-dev zlib1g-dev libbz2-dev \
+          libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev \
+          xz-utils tk-dev libffi-dev
+        # Ready to install
         sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
       elif can-dnf; then
-        sudo dnf groupinstall 'Development Tools' && sudo dnf install curl file git
+        # Dependencies for brew
+        sudo dnf -y groupinstall 'Development Tools' && sudo dnf -y install curl file git
+        # Dependencies for pyenv
+        sudo dnf -y install zlib-devel bzip2 bzip2-devel readline-devel sqlite sqlite-devel openssl-devel xz xz-devel
+        # Ready to install
         sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
       elif can-yum; then
-        sudo yum groupinstall 'Development Tools' && sudo yum install curl file git
+        # Dependencies for brew
+        sudo yum -y groupinstall 'Development Tools' && sudo yum -y install curl file git
+        # Dependencies for pyenv
+        sudo yum -y install zlib-devel bzip2 bzip2-devel readline-devel sqlite sqlite-devel openssl-devel xz xz-devel
+        # Ready to install
         sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
       else
         echo "Dude, you're not on a Mac and you can't apt, dnf, or yum. What the hell platform you on, bro?"
@@ -64,14 +78,32 @@ brew upgrade
 # Install Mac-specific needs
 if is-macos; then
   brew install \
+    bash \
+    bash-completion@2 \
     coreutils \
     ssh-copy-id
+
+  # Linux (Ubuntu, CentOS) have 4.x versions of bash.
+  # OSX still has a 3.x version of bash.
+  # We'll use brewed bash on OSX.
+  BREW_BASH="$(brew --prefix)/bin/bash"
+  if is-executable "$BREW_BASH"; then
+    if ! grep "$BREW_BASH" /etc/shells; then
+      echo "Adding $BREW_BASH to /etc/shells."
+      sudo sh -c "echo $BREW_BASH >> /etc/shells"
+    fi
+    if [ "$SHELL" -ne "$BREW_BASH" ]; then
+      echo "Changing shell for $USER to $BREW_BASH"
+      chsh -s "$BREW_BASH"
+      echo "Shell updated: You will need to log out and back in."
+    fi
+  fi
+  unset BREW_BASH
+
 fi
 
 # Install good stuff on everything
 brew install \
-  bash \
-  bash-completion@2 \
   bash-git-prompt \
   cookiecutter \
   curl \
@@ -90,19 +122,5 @@ brew install \
   tree \
   wget \
   vim
-
-# Make sure $BREW_BASH can be used
-BREW_BASH="$(brew --prefix)/bin/bash"
-if is-executable "$BREW_BASH"; then
-  if ! grep "$BREW_BASH" /etc/shells; then
-    echo "Updating default shell for $USER."
-    sudo sh -c "echo $BREW_BASH >> /etc/shells"
-  fi
-  chsh -s $BREW_BASH
-  echo "Shell updated:"
-  "$BREW_BASH" --version
-  echo "You will need to log out and back in."
-fi
-unset BREW_BASH
 
 echo "Brew installation done."
