@@ -41,8 +41,8 @@ if ! is-macos; then
   echo "GitHub version: '$GITHUB_VERSION'"
 
   if [ "$INSTALLED_VERSION" != "$GITHUB_VERSION" ]; then
-    echo "Installing latest version from https://github.com$GITHUB_URL"
-    wget --show-progres --progress=bar -q "https://github.com$GITHUB_URL" -O /tmp/atom-amd64.deb
+    echo "Installing latest version from https://atom.io/download/deb"
+    wget --show-progres --progress=bar -q "https://atom.io/download/deb" -O /tmp/atom-amd64.deb
     sudo dpkg -i /tmp/atom-amd64.deb
     rm /tmp/atom-amd64.deb
   else
