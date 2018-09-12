@@ -58,6 +58,7 @@ if is-executable apm; then
     atom-focus-mode
     atom-beautify
     atom-trello
+    atom-wrytedown
     busy-signal
     editorconfig
     file-icons
