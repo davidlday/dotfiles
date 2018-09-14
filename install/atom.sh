@@ -60,6 +60,7 @@ if is-executable apm; then
     atom-trello
     atom-wrytedown
     busy-signal
+    document-outline
     editorconfig
     file-icons
     git-plus
