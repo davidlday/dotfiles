@@ -42,6 +42,8 @@ if ! is-executable code; then
       else
         echo "Hmmm - rpm is available, but dnf and yum aren't. What the heck, bro?"
       fi
+    else
+      echo "Can't use apt or rpm. What the heck, bro?"
     fi
   else
     echo "Man, you're on a Mac! Download and install it yerself, fool!"
