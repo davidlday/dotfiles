@@ -52,6 +52,12 @@ if can-brew; then
   GIT_PROMPT_THEME=Solarized_UserHost
   # shellcheck source=/dev/null
   source "$BREW_PREFIX/opt/bash-git-prompt/share/gitprompt.sh"
+  # kube-ps1
+  if [ -f "$BREW_PREFIX/opt/kube-ps1/share/kube-ps1.sh" ]; then
+    # shellcheck source=/dev/null
+    source "$BREW_PREFIX/opt/kube-ps1/share/kube-ps1.sh"
+    PS1='$(kube_ps1)'$PS1
+  fi
 else
   # Give a fallback prompt
   if [ -f /etc/bash_completion.d/git-prompt ]; then
@@ -77,3 +83,4 @@ unset color_prompt force_color_prompt
 if is-executable direnv; then
   eval "$(direnv hook bash)"
 fi
+
