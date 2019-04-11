@@ -76,3 +76,11 @@ fi
 
 # Always use vim instead of vi
 alias vi='vim'
+
+# Add aliases for common apt commands
+if can-apt; then
+  alias aptud="sudo apt update"
+  alias aptug="sudo apt upgrade"
+  alias aptall="aptud; aptug"
+fi
+
