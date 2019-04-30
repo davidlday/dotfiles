@@ -9,6 +9,7 @@ is-executable getconf && PATH="$($(command -v getconf) PATH)"
 # Order matters
 prepend-path "/bin"
 prepend-path "/usr/bin"
+prepend-path "/snap/bin"
 prepend-path "/usr/local/bin"
 prepend-path "/sbin"
 prepend-path "/usr/sbin"
