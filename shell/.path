@@ -9,7 +9,8 @@ is-executable getconf && PATH="$($(command -v getconf) PATH)"
 # Order matters
 prepend-path "/bin"
 prepend-path "/usr/bin"
-prepend-path "/snap/bin"
+# Only on Linux so we'll test first
+[ -d "/snap/bin" ] && prepend-path "/snap/bin"
 prepend-path "/usr/local/bin"
 prepend-path "/sbin"
 prepend-path "/usr/sbin"
@@ -33,7 +34,8 @@ if ! is-macos; then
   unset BREW_HOME
 fi
 
-prepend-path "$HOME/bin"
+# Don't think I use $HOME/bin anywhere anymore
+[ -d "/snap/bin" ] && prepend-path "$HOME/bin"
 prepend-path "$HOME/.local/bin"
 
 dedupe-path
