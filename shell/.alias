@@ -85,10 +85,12 @@ if can-apt; then
 fi
 
 # Add aliases for electron apps
-if is-executable atom; then
-  alias atom="atom --disable-gpu"
-fi
-if is-executable code; then
-  alias code="code --disable-gpu"
-fi
+# Originally added due to NVIDIA drivers
+# on Ubuntu. Reverted to Nouvea drivers.
+#if is-executable atom; then
+#  alias atom="atom --disable-gpu"
+#fi
+#if is-executable code; then
+#  alias code="code --disable-gpu"
+#fi
 
