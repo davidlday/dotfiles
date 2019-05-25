@@ -2,7 +2,7 @@
 source ../shell/.function
 
 if ! is-executable vim; then
-  echo "Skipped: vim. Apparently vim isn't installed."
+  echo "Apparently vim isn't installed. Installing."
   if ! can-brew; then
     source ./brew.sh
   fi
@@ -29,8 +29,18 @@ echo "Pathogen installed"
 if [ ! -d "$HOME/.vim/bundle/editorconfig-vim" ]; then
   echo "Installing EditorConfig-Vim"
   (
-  cd "$HOME/.vim/bundle" || exit
-  git clone https://github.com/editorconfig/editorconfig-vim.git
+    cd "$HOME/.vim/bundle" || exit
+    git clone https://github.com/editorconfig/editorconfig-vim.git
   )
 fi
 echo "EditorConfig-Vim installed"
+
+# Direnv: https://github.com/direnv/direnv.vim#install
+if [ ! -d "$HOME/.vim/bundle/direnv.vim" ]; then
+  echo "Installing Direnv-Vim"
+  (
+    cd "$HOME/.vim/bundle" || exit
+    git clone https://github.com/direnv/direnv.vim.git
+  )
+fi
+echo "Direnv-Vim installed"
