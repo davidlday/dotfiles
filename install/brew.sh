@@ -87,6 +87,7 @@ brew install \
   bash-git-prompt \
   cookiecutter \
   curl \
+  direnv \
   git \
   goenv \
   languagetool \
