@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+# Shell hooks for environment managers
+
+# Intialize direnv
+is-executable direnv && eval "$(direnv hook bash)"
+
+# Intialize goenv
+is-executable goenv && eval "$(goenv init -)"
+
+# Initialize nodenv
+is-executable nodenv && eval "$(nodenv init -)"
+
+# Intialize plenv
+is-executable plenv && eval "$(plenv init -)"
+
+# Intialize pyenv
+is-executable pyenv && eval "$(pyenv init -)"
+is-executable pyenv-virtualenv-init && eval "$(pyenv virtualenv-init -)"
+
+# Intialize rbenv
+is-executable rbenv && eval "$(rbenv init -)"

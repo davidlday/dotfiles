@@ -1,4 +1,0 @@
-#!/usr/bin/env bash
-
-# Intialize direnv
-is-executable direnv && eval "$(direnv hook bash)"

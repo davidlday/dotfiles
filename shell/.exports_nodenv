@@ -1,4 +1,0 @@
-#!/usr/bin/env bash
-
-# Initialize nodenv
-is-executable nodenv && eval "$(nodenv init -)"

@@ -1,7 +1,0 @@
-#!/usr/bin/env bash
-
-# Is goenv executable in my home directory?
-# Should be installed via Linux/HomeBrew instead
-[ -d "$HOME/.goenv/bin" ] && prepend-path "$HOME/.goenv/bin"
-# Intialize goenv
-is-executable goenv && eval "$(goenv init -)"

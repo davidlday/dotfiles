@@ -1,8 +1,0 @@
-#!/usr/bin/env bash
-
-# Is pyenv executable in my home directory?
-# Should be installed via Linux/HomeBrew instead
-[ -d "$HOME/.pyenv/bin" ] && prepend-path "$HOME/.pyenv/bin"
-# Intialize pyenv
-is-executable pyenv && eval "$(pyenv init -)"
-is-executable pyenv-virtualenv-init && eval "$(pyenv virtualenv-init -)"
