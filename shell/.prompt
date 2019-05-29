@@ -78,9 +78,3 @@ else
 fi
 
 unset color_prompt force_color_prompt
-
-# direnv
-if is-executable direnv; then
-  eval "$(direnv hook bash)"
-fi
-
