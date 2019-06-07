@@ -47,10 +47,10 @@ can-yum() {
 
 prepend-path() {
   if [ -d "$1" ]; then
-    echo -e "path: \033[0;32m✔\033[0;0m $1"
+    echo "path: $(tput setaf 2)✔$(tput sgr 0) $1"
     PATH="$1:$PATH"
   else
-    echo -e "path: \033[0;31m✘\033[0;0m $1"
+    echo -e "path: $(tput setaf 1)✘$(tput sgr 0) $1"
     return 1
   fi
 }
