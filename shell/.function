@@ -47,10 +47,10 @@ can-yum() {
 
 prepend-path() {
   if [ -d "$1" ]; then
-    echo "path: Prepending PATH with $1."
+    echo -e "path: \033[0;32m✔\033[0;0m $1"
     PATH="$1:$PATH"
   else
-    echo "path: $1 is not a valid directory."
+    echo -e "path: \033[0;31m✘\033[0;0m $1"
     return 1
   fi
 }
