@@ -78,6 +78,40 @@ is-brewed() {
   brew list "$1" > /dev/null 2>&1 || return 1;
 }
 
+soutdated() {
+  if can-brew; then
+    echo "Checking brew..."
+    brew update && brew outdated
+    echo "Checking brew cask..."
+    brew cask outdated
+  fi
+
+  if is-macos; then
+    echo "Checking softwareupdate..."
+    softwareupdate --list
+  elif can-apt; then
+    echo "Checking apt..."
+    sudo apt update && apt list --upgradable
+  fi
+}
+
+supdate() {
+  if can-brew; then
+    echo "Updating brew..."
+    brew update && brew upgrade
+    echo "Updating brew cask..."
+    brew cask upgrade
+  fi
+
+  if is-macos; then
+    echo "Updating software..."
+    sudo softwareupdate --install --all
+  elif can-apt; then
+    echo "Updating apt..."
+    sudo apt update && sudo apt upgrade
+  fi
+}
+
 # Update config file
 
 set-config() {
