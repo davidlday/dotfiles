@@ -43,6 +43,10 @@ can-yum() {
   is-executable /usr/bin/yum
 }
 
+can-snap() {
+  is-executrable /usr/bin/snap
+}
+
 # Add to path
 
 prepend-path() {
@@ -79,13 +83,7 @@ is-brewed() {
 }
 
 soutdated() {
-  if can-brew; then
-    echo "Checking brew..."
-    brew update && brew outdated
-    echo "Checking brew cask..."
-    brew cask outdated
-  fi
-
+  # Check system package manager
   if is-macos; then
     echo "Checking softwareupdate..."
     softwareupdate --list
@@ -93,22 +91,46 @@ soutdated() {
     echo "Checking apt..."
     sudo apt update && apt list --upgradable
   fi
+
+  # Check homebrew packages
+  if can-brew; then
+    echo "Checking brew..."
+    brew update && brew outdated
+    if is-macos; then
+      echo "Checking brew cask..."
+      brew cask outdated
+    else
+      echo "Not on a Mac, bro! Skipping brew cask..."
+    fi
+  fi
 }
 
 supdate() {
-  if can-brew; then
-    echo "Updating brew..."
-    brew update && brew upgrade
-    echo "Updating brew cask..."
-    brew cask upgrade
-  fi
-
+  # Update system packages
   if is-macos; then
     echo "Updating software..."
     sudo softwareupdate --install --all
   elif can-apt; then
     echo "Updating apt..."
     sudo apt update && sudo apt upgrade
+  fi
+
+  # Refresh snaps
+  if can-snap; then
+    echo "Refreshing snaps..."
+    sudo snap Refresh
+  fi
+
+  # Update brew packages
+  if can-brew; then
+    echo "Updating brew..."
+    brew update && brew upgrade
+    if is-macos; then
+      echo "Updating brew cask..."
+      brew cask upgrade
+    else
+      echo "Not on a Mac, bro! Skipping brew cask..."
+    fi
   fi
 }
 
