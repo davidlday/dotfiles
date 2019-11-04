@@ -28,6 +28,12 @@
     tooltip: "Outline"
   }
   {
+    type: "button"
+    icon: "settings"
+    callback: "settings-view:open"
+    tooltip: "Preferences"
+  }
+  {
     type: "spacer"
   }
   {
