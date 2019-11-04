@@ -3,12 +3,6 @@
 #   read the documentation on https://atom.io/packages/flex-tool-bar
 
 [
-  # {
-  #   type: "button"
-  #   tooltip: "New File"
-  #   callback: "application:new-file"
-  #   icon: "plus"
-  # }
   {
     type: "button"
     tooltip: "Project"
