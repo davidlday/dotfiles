@@ -28,13 +28,28 @@
     tooltip: "Outline"
   }
   {
+    type: "spacer"
+  }
+  {
+    type: "button"
+    icon: "book"
+    callback: "autoflow:reflow-selection"
+    tooltip: "Reflow"
+  }
+  {
+    type: "button"
+    icon: "quote"
+    callback: "smart-quotes-plus:smartreplace"
+    tooltip: "AutoFormat"
+  }
+  {
+    type: "spacer"
+  }
+  {
     type: "button"
     icon: "settings"
     callback: "settings-view:open"
     tooltip: "Preferences"
-  }
-  {
-    type: "spacer"
   }
   {
     type: "button"
