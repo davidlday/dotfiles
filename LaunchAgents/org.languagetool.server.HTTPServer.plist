@@ -1,20 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-<dict>
-	<key>Label</key>
-	<string>org.languagetool.server.HTTPServer</string>
-	<key>LimitLoadToSessionType</key>
-	<string>Aqua</string>
-	<key>ProgramArguments</key>
-	<array>
-		<string>/usr/local/bin/languagetool-server</string>
-		<string>--port</string>
-		<string>8081</string>
-	</array>
-	<key>RunAtLoad</key>
-	<true/>
-	<key>KeepAlive</key>
-	<true/>
-</dict>
+  <dict>
+    <key>Label</key>
+    <string>org.languagetool.server.HTTPServer</string>
+    <key>LimitLoadToSessionType</key>
+    <string>Aqua</string>
+    <key>ProgramArguments</key>
+    <array>
+      <string>/usr/bin/java</string>
+      <string>-Xms1G</string>
+      <string>-Xmx1G</string>
+      <string>-cp</string>
+      <string>/usr/local/opt/languagetool/libexec/languagetool-server.jar</string>
+      <string>org.languagetool.server.HTTPServer</string>
+      <string>--port</string>
+      <string>8081</string>
+    </array>
+    <key>RunAtLoad</key>
+    <true/>
+    <key>KeepAlive</key>
+    <true/>
+  </dict>
 </plist>
