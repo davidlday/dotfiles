@@ -19,13 +19,13 @@ LS_TIMESTYLEISO=$(is-supported "ls --time-style=long-iso" --time-style=long-iso)
 LS_GROUPDIRSFIRST=$(is-supported "ls --group-directories-first" --group-directories-first)
 
 # shellcheck disable=SC2139
-alias l="ls -lahA $LS_COLORS $LS_TIMESTYLEISO $LS_GROUPDIRSFIRST"
+alias l="ls -lah $LS_COLORS $LS_TIMESTYLEISO $LS_GROUPDIRSFIRST"
 # shellcheck disable=SC2139
-alias ll="ls -lA $LS_COLORS"
+alias ll="ls -lh $LS_COLORS $LS_TIMESTYLEISO $LS_GROUPDIRSFIRST"
 # shellcheck disable=SC2139
 alias lt="ls -lhAtr $LS_COLORS $LS_TIMESTYLEISO $LS_GROUPDIRSFIRST"
 # shellcheck disable=SC2139
-alias ld="ls -ld $LS_COLORS */"
+alias ld="ls -ld $LS_COLORS $LS_TIMESTYLEISO $LS_GROUPDIRSFIRST */"
 alias lpm="stat -c '%a %n' *"
 
 unset LS_COLORS LS_TIMESTYLEISO LS_GROUPDIRSFIRST
