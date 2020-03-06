@@ -32,32 +32,13 @@ if ! can-brew; then
   source "$DOTFILES_DIR/install/brew.sh"
 fi
 BREW_PREFIX="$(brew --prefix)"
-
-# Is git installed via brew?
-if [ ! -f "$BREW_PREFIX/etc/bash_completion.d/git-completion.bash" ]; then
-  brew install git
-fi
-# Is bash-git-prompt installed via brew?
-if [ ! -f "$BREW_PREFIX/opt/bash-git-prompt/share/gitprompt.sh" ]; then
-  brew install bash-git-prompt
+if [ ! -f "$BREW_PREFIX/bin/starship" ]; then
+  brew install starship
 fi
 
 # Just in case something weird happened
-if can-brew; then
-  # git bash completion
-  # shellcheck source=/dev/null
-  source "$BREW_PREFIX/etc/bash_completion.d/git-completion.bash"
-  # git bash prompt
-  __GIT_PROMPT_DIR="$BREW_PREFIX/opt/bash-git-prompt/share"
-  GIT_PROMPT_THEME=Solarized_UserHost
-  # shellcheck source=/dev/null
-  source "$BREW_PREFIX/opt/bash-git-prompt/share/gitprompt.sh"
-  # kube-ps1
-  if [ -f "$BREW_PREFIX/opt/kube-ps1/share/kube-ps1.sh" ]; then
-    # shellcheck source=/dev/null
-    source "$BREW_PREFIX/opt/kube-ps1/share/kube-ps1.sh"
-    PS1='$(kube_ps1)'$PS1
-  fi
+if [ -f "$BREW_PREFIX/bin/starship" ]; then
+  eval "$(starship init bash)"
 else
   # Give a fallback prompt
   if [ -f /etc/bash_completion.d/git-prompt ]; then
