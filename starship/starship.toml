@@ -43,7 +43,7 @@ prompt_order = [
 scan_timeout = 60
 
 [character]
-symbol = "❯❯"
+symbol = "✔❯"
 error_symbol = "✘❯"
 use_symbol_for_status = true
 
