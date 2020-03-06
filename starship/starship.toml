@@ -1,1 +1,26 @@
-#
+# https://starship.rs/config/
+[character]
+symbol = "❯❯"
+style_success = "green"
+use_symbol_for_status = true
+
+[directory]
+style = "cyan"
+
+[git_branch]
+style = "purple"
+
+[git_commit]
+style = "green"
+
+[git_status]
+style = "red"
+
+[nodejs]
+style = "yellow"
+
+[package]
+style = "cyan"
+
+[python]
+style = "yellow"
