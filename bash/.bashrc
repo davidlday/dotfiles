@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
 
 # If not running interactively, don't do anything
-
-[ -z "$PS1" ] && return
+case $- in
+    *i*) ;;
+      *) return;;
+esac
 
 # Not strictly necessary, but left over from old readlink/greadlink.
 REALPATH=$(command -v realpath)

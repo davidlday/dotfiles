@@ -61,6 +61,7 @@ if is-macos; then
     bash \
     bash-completion@2 \
     coreutils \
+    smartmontools \
     ssh-copy-id
 
   # Linux (Ubuntu, CentOS) have 4.x versions of bash.
@@ -98,6 +99,7 @@ brew install \
   pyenv-virtualenv \
   rbenv \
   shellcheck \
+  starship \
   sqlite \
   travis \
   tree \
