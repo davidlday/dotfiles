@@ -32,34 +32,7 @@ fi
 
 if is-executable apm; then
   echo "Installing Atom packages."
-  declare -a packages=(
-    atom-focus-mode
-    atom-beautify
-    atom-trello
-    atom-wrytedown
-    busy-signal
-    document-outline
-    editorconfig
-    file-icons
-    git-plus
-    intentions
-    linter
-    linter-languagetool
-    linter-shellcheck
-    linter-ui-default
-    linter-write-good
-    open-terminal-here
-    wordcount
-  )
-
-  for package in "${packages[@]}"; do
-    if [ -d "$HOME/.atom/packages/$package" ]; then
-      echo "$package already installed."
-    else
-      apm install "$package"
-    fi
-  done
-
+  apm install --packages-file ../atom/package.list
 fi
 
 echo "Atom installation done."
