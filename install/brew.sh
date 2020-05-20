@@ -73,7 +73,7 @@ if is-macos; then
       echo "Adding $BREW_BASH to /etc/shells."
       sudo sh -c "echo $BREW_BASH >> /etc/shells"
     fi
-    if [ "$SHELL" -ne "$BREW_BASH" ]; then
+    if [ "$SHELL" != "$BREW_BASH" ]; then
       echo "Changing shell for $USER to $BREW_BASH"
       chsh -s "$BREW_BASH"
       echo "Shell updated: You will need to log out and back in."
