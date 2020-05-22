@@ -44,7 +44,7 @@ can-yum() {
 }
 
 can-snap() {
-  is-executrable /usr/bin/snap
+  is-executable /usr/bin/snap
 }
 
 # Add to path
