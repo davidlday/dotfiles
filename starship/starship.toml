@@ -45,9 +45,8 @@ format = """
 scan_timeout = 60
 
 [character]
-symbol = "✔❯"
-error_symbol = "✘❯"
-use_symbol_for_status = true
+success_symbol = "[✔❯](green)"
+error_symbol = "[✘❯](red)"
 
 [directory]
 style = "cyan"
