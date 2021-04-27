@@ -65,8 +65,6 @@ style = "yellow"
 
 [git_status]
 style = "red"
-deleted_count.enabled = true
-staged_count.enabled = true
 
 [hostname]
 ssh_only = false
