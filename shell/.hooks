@@ -15,8 +15,14 @@ is-executable nodenv && eval "$(nodenv init -)"
 is-executable plenv && eval "$(plenv init -)"
 
 # Intialize pyenv
-is-executable pyenv && eval "$(pyenv init -)"
+is-executable pyenv \
+    && export PYENV_ROOT="$HOME/.pyenv" \
+    && eval "$(pyenv init --path)" \
+    && eval "$(pyenv init -)"
 is-executable pyenv-virtualenv-init && eval "$(pyenv virtualenv-init -)"
 
 # Intialize rbenv
 is-executable rbenv && eval "$(rbenv init -)"
+
+# dedupe path
+dedupe-path
