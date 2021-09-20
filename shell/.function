@@ -96,12 +96,12 @@ soutdated() {
   if can-brew; then
     echo "Checking brew..."
     brew update && brew outdated
-    if is-macos; then
-      echo "Checking brew cask..."
-      brew cask outdated
-    else
-      echo "Not on a Mac, bro! Skipping brew cask..."
-    fi
+    # if is-macos; then
+    #   echo "Checking brew cask..."
+    #   brew cask outdated
+    # else
+    #   echo "Not on a Mac, bro! Skipping brew cask..."
+    # fi
   fi
 }
 
@@ -125,12 +125,12 @@ supdate() {
   if can-brew; then
     echo "Updating brew..."
     brew update && brew upgrade
-    if is-macos; then
-      echo "Updating brew cask..."
-      brew cask upgrade
-    else
-      echo "Not on a Mac, bro! Skipping brew cask..."
-    fi
+    # if is-macos; then
+    #   echo "Updating brew cask..."
+    #   brew cask upgrade
+    # else
+    #   echo "Not on a Mac, bro! Skipping brew cask..."
+    # fi
   fi
 }
 
