@@ -2,6 +2,7 @@
 # Shortcuts
 alias path='echo -e ${PATH//:/\\n}'
 alias reload='source "$HOME/.bashrc"'
+alias creload='clear && reload'
 # Reload the shell (i.e. invoke as a login shell)
 # alias reload='exec $SHELL -l'
 # alias reload='exec $SHELL'
