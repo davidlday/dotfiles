@@ -1,6 +1,7 @@
 [user]
 	name = David L. Day
 	email = dday376@gmail.com
+	signingkey = F5D9B90C515F0045
 
 [github]
   user = davidlday
@@ -44,3 +45,5 @@
 	unstage = reset HEAD --
 [pull]
 	rebase = false
+[init]
+	defaultBranch = main
