@@ -1,5 +1,0 @@
-default_context:
-    full_name: "David L. Day"
-    email: "dday376@gmail.com"
-    github_username: "davidlday"
-cookiecutters_dir: "~/.cookiecutters/"
