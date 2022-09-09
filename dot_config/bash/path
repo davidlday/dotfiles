@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+
+# Start with system path
+# Retrieve it from getconf, otherwise it's just current $PATH
+
+is-executable getconf && PATH="$($(command -v getconf) PATH)"
+
+# Prepend new items to path (if directory exists)
+# Order matters
+prepend-path "/bin"
+prepend-path "/usr/bin"
+# Only on Linux so we'll test first
+[ -d "/snap/bin" ] && prepend-path "/snap/bin"
+prepend-path "/usr/local/bin"
+prepend-path "/sbin"
+prepend-path "/usr/sbin"
+prepend-path "/usr/local/sbin"
+
+# Add LinuxBrew. HomeBrew doesn't require this as it installs to /usr/local/bin
+if ! is-macos; then
+  export BREW_HOME
+  if [ -d /home/linuxbrew/.linuxbrew ]; then
+    BREW_HOME="/home/linuxbrew/.linuxbrew"
+  elif [ -d "$HOME/.linuxbrew" ]; then
+    BREW_HOME="${HOME}/.linuxbrew"
+  fi
+  if [ -d "$BREW_HOME" ]; then
+    [ -d "${BREW_HOME}/bin" ] && prepend-path "${BREW_HOME}/bin"
+    [ -d "${BREW_HOME}/sbin" ] && prepend-path "${BREW_HOME}/sbin"
+    [ -d "${BREW_HOME}/share/man" ] && export MANPATH="${BREW_HOME}/share/man:$MANPATH"
+    [ -d "${BREW_HOME}/share/info" ] && export INFOPATH="${BREW_HOME}/share/info:$INFOPATH"
+    [ -n "${XDG_DATA_DIRS}" ] && export XDG_DATA_DIRS="${BREW_HOME}/share:${XDG_DATA_DIRS}"
+  fi
+  unset BREW_HOME
+fi
+
+# Don't think I use $HOME/bin anywhere anymore
+[ -d "/snap/bin" ] && prepend-path "$HOME/bin"
+prepend-path "$HOME/.local/bin"
+
+dedupe-path
+
+# Wrap up
+
+export PATH
