@@ -1,4 +1,6 @@
 README.md
+LICENSE
+
 {{- if ne .chezmoi.os "darwin" }}
 Library/LaunchAgents/org.languagetool.server.HTTPServer.plist
 {{- end }}
