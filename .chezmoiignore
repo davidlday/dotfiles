@@ -3,4 +3,5 @@ LICENSE
 
 {{- if ne .chezmoi.os "darwin" }}
 Library/LaunchAgents/org.languagetool.server.HTTPServer.plist
+Library/Application Support/iTerm2/DynamicProfiles/profiles.json
 {{- end }}
