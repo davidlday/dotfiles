@@ -1,0 +1,5 @@
+".vim/colors/desert.vim":
+  type: "file"
+  url: "https://raw.githubusercontent.com/lod/desert.vim/master/colors/desert.vim"
+  refreshPeriod: "168h"
+
