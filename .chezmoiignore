@@ -2,7 +2,8 @@ README.md
 LICENSE
 
 {{- if ne .chezmoi.os "darwin" }}
-Library/LaunchAgents/org.languagetool.server.HTTPServer.plist
-'Library/Application Support/iTerm2/DynamicProfiles/profiles.json'
-Library/Preferences/pypoetry/*
+Library/Application Support/Code/
+'Library/Application Support/iTerm2/'
+Library/LaunchAgents/
+Library/Preferences/pypoetry/
 {{- end }}

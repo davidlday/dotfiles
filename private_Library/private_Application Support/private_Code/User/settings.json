@@ -1,0 +1,79 @@
+{
+  "workbench.colorTheme": "Solarized Dark",
+  "editor.suggestSelection": "first",
+  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+  "git.confirmSync": false,
+  "git.autofetch": true,
+  "editor.fontSize": 20,
+  "workbench.startupEditor": "newUntitledFile",
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.fontLigatures": true,
+  "editor.fontFamily": "'Fira Code', Menlo, Monaco, 'Courier New', monospace",
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "prettier.trailingComma": "all",
+  "editor.minimap.enabled": false,
+  "languageToolLinter.languageTool.language": "en-US",
+  "languageToolLinter.languageTool.motherTongue": "en-US",
+  "languageToolLinter.lintOnChange": true,
+  "languageToolLinter.lintOnOpen": true,
+  "languageToolLinter.smartFormat.onType": true,
+  "editor.formatOnType": true,
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.wordWrap": "wordWrapColumn",
+  "[markdown]": {
+    "editor.wordWrap": "wordWrapColumn",
+    "editor.quickSuggestions": {
+      "comments": "off",
+      "strings": "off",
+      "other": "off"
+    },
+    "editor.formatOnType": true,
+    "editor.tabCompletion": "onlySnippets",
+    "editor.rulers": [80, 100]
+  },
+  "plantuml.server": "https://www.plantuml.com/plantuml",
+  "plantuml.java": "/Library/Java/JavaVirtualMachines/jdk1.8.0_251.jdk/Contents/Home/bin/java",
+  "plantuml.render": "PlantUMLServer",
+  "languageToolLinter.hideDiagnosticsOnChange": true,
+  "workbench.editor.enablePreview": false,
+  "workbench.list.openMode": "doubleClick",
+  "extensions.ignoreRecommendations": false,
+  "java.configuration.checkProjectSettingsExclusions": false,
+  "speech.speed": 1.25,
+  "speech.voice": "Samantha",
+  "python.linting.banditEnabled": true,
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.python"
+  },
+  "languageToolLinter.plainText.enabled": false,
+  "redhat.telemetry.enabled": true,
+  "vs-kubernetes": {
+    "vscode-kubernetes.minikube-path.mac": "/Users/dday/.vs-kubernetes/tools/minikube/darwin-amd64/minikube",
+    "vscode-kubernetes.helm-path.mac": "/Users/dday/.vs-kubernetes/tools/helm/darwin-amd64/helm"
+  },
+  "markdown.preview.fontSize": 16,
+  "diffEditor.ignoreTrimWhitespace": false,
+  "java.jdt.ls.vmargs": "-XX:+UseParallelGC -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -Xmx1G -Xms100m -javaagent:\"/Users/dday/.vscode/extensions/gabrielbb.vscode-lombok-1.0.1/server/lombok.jar\"",
+  "git.enableCommitSigning": true,
+  "editor.inlineSuggest.enabled": true,
+  "github.copilot.enable": {
+    "*": true,
+    "yaml": false,
+    "plaintext": false,
+    "markdown": false
+  },
+  "markdown-preview-github-styles.colorTheme": "light",
+  "powershell.integratedConsole.showOnStartup": false,
+  "workbench.editor.untitled.hint": "hidden"
+}
