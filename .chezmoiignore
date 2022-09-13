@@ -6,4 +6,8 @@ Library/Application Support/Code/
 'Library/Application Support/iTerm2/'
 Library/LaunchAgents/
 Library/Preferences/pypoetry/
+'Library/Application Support/Code/'
+{{- end }}
+{{- if ne .chezmoi.os "linux" }}
+.config/Code/
 {{- end }}
