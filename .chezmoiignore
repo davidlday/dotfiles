@@ -1,12 +1,21 @@
 README.md
 LICENSE
 
+# Ignore if NOT on Mac
 {{- if ne .chezmoi.os "darwin" }}
-Library/Application Support/Code/
-Library/Application Support/iTerm2/
-Library/LaunchAgents/
-Library/Preferences/pypoetry/
+Library/
 {{- end }}
+
+# Ignore if NOT on Linux
 {{- if ne .chezmoi.os "linux" }}
 .config/Code/
+{{- end }}
+
+# Ignore only on Windows
+{{- if eq .chezmoi.os "windows" }}
+.bashrc
+.config/bash/
+.dircolors
+.inputrc
+.profile
 {{- end }}
