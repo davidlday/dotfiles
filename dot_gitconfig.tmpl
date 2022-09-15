@@ -3,6 +3,11 @@
   email = {{ .email }}
   signingkey = {{ .signingkey }}
 
+{{- if eq .chezmoi.os "windows" }}
+[gpg]
+  program = {{ .gpg.program }}
+{{- end }}
+
 [github]
   user = davidlday
 
@@ -38,12 +43,18 @@
   oldHighlight = red bold 52
   newNormal = green bold
   newHighlight = green bold 22
+
+[commit]
+  gpgsign = true
+
 [alias]
   fp = fetch -p
   co = checkout
   last = log -1 HEAD
   unstage = reset HEAD --
+
 [pull]
   rebase = false
+
 [init]
   defaultBranch = main
