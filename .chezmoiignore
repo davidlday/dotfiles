@@ -11,6 +11,11 @@ Library/
 .config/Code/
 {{- end }}
 
+# Ignore if NOT on Windows
+{{- if ne .chezmoi.os "linux" }}
+AppData/
+{{- end }}
+
 # Ignore only on Windows
 {{- if eq .chezmoi.os "windows" }}
 .bashrc
