@@ -15,7 +15,7 @@ Library/
 
 # Ignore if NOT on WSL
 {{- if eq .chezmoi.os "linux" }}
-{{   if (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
+{{   if ne (.chezmoi.kernel.osrelease | lower | contains "microsoft") true }}
 .local/bin/code
 .local/bin/podman
 {{   end }}
