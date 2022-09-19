@@ -1,3 +1,4 @@
+# Ignore Always
 README.md
 LICENSE
 
@@ -8,7 +9,16 @@ Library/
 
 # Ignore if NOT on Linux
 {{- if ne .chezmoi.os "linux" }}
+.local/
 .config/Code/
+{{- end }}
+
+# Ignore if NOT on WSL
+{{- if eq .chezmoi.os "linux" }}
+{{   if (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
+.local/bin/code
+.local/bin/podman
+{{   end }}
 {{- end }}
 
 # Ignore if NOT on Windows
