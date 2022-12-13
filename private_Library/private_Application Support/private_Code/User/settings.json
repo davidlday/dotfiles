@@ -52,7 +52,6 @@
   "java.configuration.checkProjectSettingsExclusions": false,
   "speech.speed": 1.25,
   "speech.voice": "Samantha",
-  "python.linting.banditEnabled": true,
   "[python]": {
     "editor.defaultFormatter": "ms-python.python"
   },
@@ -75,5 +74,24 @@
   },
   "markdown-preview-github-styles.colorTheme": "light",
   "powershell.integratedConsole.showOnStartup": false,
-  "workbench.editor.untitled.hint": "hidden"
+  "workbench.editor.untitled.hint": "hidden",
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "editor.unicodeHighlight.allowedCharacters": {
+    "’": true
+  },
+  "rsp-ui.enableStartServerOnActivation": [
+    {
+      "id": "redhat.vscode-community-server-connector",
+      "name": "Community Server Connector",
+      "startOnActivation": true
+    }
+  ],
+  "git.ignoreRebaseWarning": true,
+  "isort.importStrategy": "fromEnvironment",
+  "python.linting.pylintEnabled": true,
+  "python.linting.ignorePatterns": [
+    "**/site-packages/**/*.py",
+    ".vscode/*.py",
+    "tests/*.py"
+  ]
 }
