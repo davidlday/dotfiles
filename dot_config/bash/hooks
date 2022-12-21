@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+
+# Shell hooks for environment managers
+
+# Intialize direnv
+is-executable direnv && eval "$(direnv hook bash)"
+
+# Intialize goenv
+is-executable goenv && eval "$(goenv init -)"
+
+# Initialize nodenv
+is-executable nodenv && eval "$(nodenv init -)"
+
+# Intialize plenv
+is-executable plenv && eval "$(plenv init -)"
+
+# Intialize pyenv
+is-executable pyenv \
+    && export PYENV_ROOT="$HOME/.pyenv" \
+    && eval "$(pyenv init --path)" \
+    && eval "$(pyenv init -)"
+is-executable pyenv-virtualenv-init && eval "$(pyenv virtualenv-init -)"
+
+# Intialize rbenv
+is-executable rbenv && eval "$(rbenv init -)"
+
+# Initialize Kitty
+# BEGIN_KITTY_SHELL_INTEGRATION
+if test -n "$KITTY_INSTALLATION_DIR" -a -e "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; then
+  source "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash";
+fi
+# END_KITTY_SHELL_INTEGRATION
+
+# dedupe path
+dedupe-path

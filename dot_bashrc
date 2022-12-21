@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+
+# If not running interactively, don't do anything
+case $- in
+    *i*) ;;
+      *) return;;
+esac
+
+# Not strictly necessary, but left over from old readlink/greadlink.
+REALPATH=$(command -v realpath)
+
+# Finally we can source the dotfiles (order matters)
+for DOTFILE in "$HOME"/.config/bash/{function,function_*,path,exports_*,env,hooks,alias,completion,grep,prompt,custom}; do
+  # shellcheck source=/dev/null
+  [ -f "$DOTFILE" ] && source "$DOTFILE"
+done
+
+if is-macos; then
+  for DOTFILE in "$HOME"/.config/bash/.{env,alias,function}.macos; do
+    # shellcheck source=/dev/null
+    [ -f "$DOTFILE" ] && source "$DOTFILE"
+  done
+fi
+
+# Set LSCOLORS
+# TODO: Need to make dircolors work on MacOS via gdircolors.
+if is-macos; then
+  eval "$(gdircolors "$HOME"/.dircolors)"
+else
+  eval "$(dircolors "$HOME"/.dircolors)"
+fi
+
+unset REALPATH CURRENT_SCRIPT SCRIPT_PATH DOTFILE EXTRAFILE
+
+# BEGIN_KITTY_SHELL_INTEGRATION
+if test -n "$KITTY_INSTALLATION_DIR" -a -e "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; then source "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; fi
+# END_KITTY_SHELL_INTEGRATION

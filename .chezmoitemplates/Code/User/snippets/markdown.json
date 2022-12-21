@@ -1,0 +1,79 @@
+{
+  // Place your snippets for markdown here. Each snippet is defined under a snippet name and has a prefix, body and
+  // description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+  // $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the
+  // same ids are connected.
+  // Example:
+  // "Print to console": {
+  // 	"prefix": "log",
+  // 	"body": [
+  // 		"console.log('$1');",
+  // 		"$2"
+  // 	],
+  // 	"description": "Log output to console"
+  // }
+  "YAML Frontmatter": {
+    "prefix": ["yaml", "fmy"],
+    "body": ["---", "$0", "---", ""],
+    "description": "Insert yaml frontmatter block."
+  },
+  "TOML Frontmatter": {
+    "prefix": ["toml", "fmt"],
+    "body": ["+++", "$0", "+++", ""],
+    "description": "Insert yaml frontmatter block."
+  },
+  "NOTE Block Comment": {
+    "prefix": ["NOTE", "bn"],
+    "body": ["<!-- NOTE: $1", "$0", "-->", ""],
+    "description": "Insert a NOTE comment block."
+  },
+  "Labeled Block Comment": {
+    "prefix": ["COMMENT", "bc"],
+    "body": [
+      "<!-- ${1|IDEA,SYNOPSIS,NOTE,REMOVE,REVIEW,REWRITE,HOOK,TODO,FIXME|}: $2",
+      "$0",
+      "-->",
+      ""
+    ],
+    "description": "Insert a labelled comment block."
+  },
+  "NOTE Inline Comment": {
+    "prefix": ["LNOTE", "ln"],
+    "body": "<!-- NOTE: $0 -->",
+    "description": "Insert a NOTE comment block."
+  },
+  "Labeled Inline Comment": {
+    "prefix": ["LCOMMENT", "lc"],
+    "body": "<!-- ${1|IDEA,SYNOPSIS,NOTE,REMOVE,REVIEW,REWRITE,HOOK,TODO,FIXME|}: $0 -->",
+    "description": "Insert a labelled comment block."
+  },
+  "Horizontal Rule": {
+    "prefix": ["hr", "3-"],
+    "body": ["---", ""],
+    "description": "Insert a NOTE comment block."
+  },
+  "Markdownlint Disable": {
+    "prefix": ["mld"],
+    "body": "<!-- markdownlint-disable $0 -->"
+  },
+  "Markdownlint Disable File": {
+    "prefix": ["mldf"],
+    "body": "<!-- markdownlint-disable-file $0 -->"
+  },
+  "Markdownlint Enable": {
+    "prefix": ["mle"],
+    "body": "<!-- markdownlint-enable $0 -->"
+  },
+  "Markdownlint Enable File": {
+    "prefix": ["mlef"],
+    "body": "<!-- markdownlint-enable-file $0 -->"
+  },
+  "Markdownlint Capture": {
+    "prefix": ["mlc"],
+    "body": "<!-- markdownlint-capture -->"
+  },
+  "Markdownlint Restore": {
+    "prefix": ["mlr"],
+    "body": "<!-- markdownlint-restore -->"
+  }
+}
