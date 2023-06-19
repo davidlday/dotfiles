@@ -15,6 +15,9 @@ prepend-path "/usr/local/bin"
 prepend-path "/sbin"
 prepend-path "/usr/sbin"
 prepend-path "/usr/local/sbin"
+# Only on Mac, so we'll test first
+[ -d "$HOMEBREW_PREFIX/opt/coreutils/libexec/gnubin" ] && \
+  prepend-path "$HOMEBREW_PREFIX/opt/coreutils/libexec/gnubin"
 
 # Add LinuxBrew. HomeBrew doesn't require this as it installs to /usr/local/bin
 if ! is-macos; then
