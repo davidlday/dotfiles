@@ -32,7 +32,7 @@ fi
 # END_KITTY_SHELL_INTEGRATION
 
 # Initialize Keychaing
-is-executable keychain && eval "$(keychain --agents ssh,gpg --eval id_ed25519 --eval {{ .signingkey }})"
+is-executable keychain && eval "$(keychain --agents ssh,gpg --eval {{ .sshkey }} --eval {{ .signingkey }})"
 
 # dedupe path
 dedupe-path
