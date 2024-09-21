@@ -51,7 +51,7 @@ can-snap() {
 
 prepend-path() {
   if [ -d "$1" ]; then
-    echo "path: $(tput setaf 2)✔$(tput sgr 0) $1"
+    echo "path: $(tput setaf 2)✓$(tput sgr 0) $1"
     PATH="$1:$PATH"
   else
     echo -e "path: $(tput setaf 1)✘$(tput sgr 0) $1"
