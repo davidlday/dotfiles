@@ -64,7 +64,7 @@ fi
 unset PATTERN
 # shellcheck disable=SC2139
 alias grep="grep $GREP_OPTIONS"
-export GREP_COLOR='1;32'
+export GREP_COLORS='mt=1;32'
 
 # Print each PATH entry on a separate line
 alias path='echo -e ${PATH//:/\\n}'
