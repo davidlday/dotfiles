@@ -37,9 +37,9 @@ if ! is-macos; then
   unset BREW_HOME
 fi
 
-# Don't think I use $HOME/bin anywhere anymore
-[ -d "/snap/bin" ] && prepend-path "$HOME/bin"
 prepend-path "$HOME/.local/bin"
+prepend-path $(brew --prefix rust)/bin
+
 
 dedupe-path
 
