@@ -38,7 +38,7 @@ if ! is-macos; then
 fi
 
 prepend-path "$HOME/.local/bin"
-prepend-path $(brew --prefix rust)/bin
+prepend-path $(brew --prefix rustup)/bin
 
 
 dedupe-path
