@@ -30,7 +30,7 @@ format = """
   $line_break\
 
   $custom\
-  $linebreak\
+  $line_break\
 
   $username\
   $hostname\
@@ -103,6 +103,8 @@ disabled = false
 
 [custom.public_ip]
 command = "curl -s ifconfig.me"
-style = "bold green"
+style = 'bold red'
+symbol = '@'
+format = '[$symbol($output)]($style)'
 disabled = false
 when = true
