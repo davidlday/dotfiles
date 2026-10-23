@@ -29,6 +29,9 @@ format = """
   $crystal\
   $line_break\
 
+  $custom\
+  $linebreak\
+
   $username\
   $hostname\
   $kubernetes\
@@ -97,3 +100,9 @@ style_root = "bold red"
 style_user = "blue"
 show_always = true
 disabled = false
+
+[custom.public_ip]
+command = "curl -s ifconfig.me"
+style = "bold green"
+disabled = false
+when = true
