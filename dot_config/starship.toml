@@ -164,5 +164,6 @@ format = "[ $user]($style)"
 command = "curl -s ifconfig.me"
 style = "bg:color_orange fg:color_fg0"
 format = "[ $output]($style)"
+ignore_timeout = true
 disabled = false
 when = true
