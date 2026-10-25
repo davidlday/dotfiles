@@ -2,10 +2,13 @@
   name = David L. Day
   email = {{ .email }}
   signingkey = {{ .signingkey }}
-
 {{- if eq .chezmoi.os "windows" }}
+
 [gpg]
   program = {{ .gpg.program }}
+
+[credential]
+  helper = manager
 {{- end }}
 
 [github]
