@@ -96,6 +96,12 @@ symbol = ""
 style = "bg:color_blue"
 format = "[[ $symbol( $version) ](fg:color_fg0 bg:color_blue)]($style)"
 
+[localip]
+style = "bg:color_orange fg:color_fg0"
+format = "[ $localipv4/]($style)"
+disabled = false
+ssh_only = true
+
 [nodejs]
 symbol = ""
 style = "bg:color_blue"
